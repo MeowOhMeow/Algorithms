@@ -6,10 +6,10 @@ Result RadixSort::sort(vector<int> &array, int digit)
 
     CountingSort sorter;
 
-    for (int i = 0; i < digit; i++)
+    for (int exp = 1; exp < pow(10, digit); exp*=10)
     {
         vector<int> temp(array.size());
-        sorter.sort(array, temp, i);
+        sorter.sort(array, temp, exp);
         array = temp;
     }
 

@@ -1,12 +1,12 @@
 #include "countingSort.h"
 
-void CountingSort::sort(vector<int> &input, vector<int> &output, int digit)
+void CountingSort::sort(vector<int> &input, vector<int> &output, int exp)
 {
     vector<int> working(10, 0);
 
     for (int i = 0; i < input.size(); i++)
     {
-        int index = input[i] % int(pow(10, digit+1)) / int(pow(10, digit));
+        int index = input[i] / exp % 10;
         working[index]++;
     }
 
@@ -18,7 +18,7 @@ void CountingSort::sort(vector<int> &input, vector<int> &output, int digit)
 
     for (int i = input.size()-1; i >= 0; i--)
     {
-        int index = input[i] % int(pow(10, digit+1)) / int(pow(10, digit));
+        int index = input[i] / exp % 10;
         output[working[index]] = input[i];
         working[index]--;
     }

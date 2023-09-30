@@ -2,6 +2,7 @@
 #define RADIXSORT_H
 
 #include <vector>
+#include <math.h>
 #include <chrono>
 #include "result.h"
 #include "countingSort.h"
