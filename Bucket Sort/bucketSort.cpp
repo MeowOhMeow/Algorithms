@@ -17,13 +17,12 @@ Result BucketSort::sort(vector<float> &array)
         sorter.sort(buckets[i]);
     }
 
-    vector<float>::iterator it = array.begin();
+    int index = 0;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < buckets[i].size(); j++)
         {
-            *it = buckets[i][j];
-            it++;
+            array[index++] = buckets[i][j];
         }
     }
 
