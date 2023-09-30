@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     int range = 10;
-    int size = 10;
+    int size = 100;
     vector<int> input(size);
     vector<int> output(size);
     for (int i = 0; i < size; i++)
@@ -18,11 +18,6 @@ int main()
     CountingSort sorter;
     Result result = sorter.sort(input, output, range);
     result.print();
-
-    for (int i = 0; i < size; i++)
-    {
-        cout << output[i] << " ";
-    }
 
     return 0;
 }
