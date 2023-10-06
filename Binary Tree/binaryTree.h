@@ -19,7 +19,7 @@ public:
     Node *findMin(Node *node);
     Node *findMax(Node *node);
     void insert(Node *node);
-    Node *del(Node *node);
+    void del(Node *node);
 };
 
 #endif /* binaryTree_h*/
