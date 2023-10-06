@@ -1,4 +1,4 @@
-#include "binaryTree.h"
+#include "binarySearchTree.h"
 #include <random>
 #include <vector>
 #include <algorithm>

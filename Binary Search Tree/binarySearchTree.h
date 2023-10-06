@@ -1,5 +1,5 @@
-#ifndef BINARYTREE_H
-#define BINARYTREE_H
+#ifndef BINARYSEARCHTREE_H
+#define BINARYSEARCHTREE_H
 
 #include "node.h"
 #include <iostream>
@@ -22,4 +22,4 @@ public:
     void del(Node *node);
 };
 
-#endif /* binaryTree_h*/
+#endif /* binarySearchTree_h */
