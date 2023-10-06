@@ -1,2 +1,3 @@
 .vscode/tasks.json
-*.exe
+*/*.exe
+Bucket Sort/main.exe
