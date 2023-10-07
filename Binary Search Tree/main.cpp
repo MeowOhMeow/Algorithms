@@ -1,7 +1,6 @@
 #include "binarySearchTree.h"
 #include <random>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -16,6 +15,8 @@ int main()
         tree.insert(node);
         array[i] = node;
     }
+    cout << "Max: " << tree.findMax()->key << endl;
+    cout << "Inorder: ";
     tree.printIn();
     cout << endl;
 
@@ -23,6 +24,8 @@ int main()
     vector<Node *>::iterator it = array.begin() + toBeDeleted;
     tree.del(*it);
     array.erase(it);
+
+    cout << "After deletion: ";
     tree.printIn();
     cout << endl;
 }

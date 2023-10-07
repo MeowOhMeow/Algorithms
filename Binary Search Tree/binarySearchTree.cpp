@@ -14,11 +14,6 @@ void BinaryTree::transplant(Node *oldNode, Node *newNode)
         newNode->parent = oldNode->parent;
 }
 
-void BinaryTree::printIn()
-{
-    printIn(root);
-}
-
 void BinaryTree::printIn(Node *node)
 {
     if (node != nullptr)
@@ -29,11 +24,6 @@ void BinaryTree::printIn(Node *node)
     }
 }
 
-void BinaryTree::printPre()
-{
-    printPre(root);
-}
-
 void BinaryTree::printPre(Node *node)
 {
     if (node != nullptr)
@@ -42,11 +32,6 @@ void BinaryTree::printPre(Node *node)
         printIn(node->left);
         printIn(node->right);
     }
-}
-
-void BinaryTree::printPost()
-{
-    printPost(root);
 }
 
 void BinaryTree::printPost(Node *node)
