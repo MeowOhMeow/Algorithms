@@ -16,13 +16,13 @@ int main()
         tree.insert(node);
         array[i] = node;
     }
-    tree.printIn(tree.root);
+    tree.printIn();
     cout << endl;
 
     int toBeDeleted = 2;
     vector<Node *>::iterator it = array.begin() + toBeDeleted;
     tree.del(*it);
     array.erase(it);
-    tree.printIn(tree.root);
+    tree.printIn();
     cout << endl;
 }

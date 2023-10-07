@@ -7,13 +7,17 @@
 class BinaryTree
 {
 private:
-    void transplant(Node *oldNode, Node *newNode);
-public:
     Node *root = nullptr;
 
+    void transplant(Node *oldNode, Node *newNode);
     void printIn(Node *node);
     void printPre(Node *node);
     void printPost(Node *node);
+
+public:
+    void printIn();
+    void printPre();
+    void printPost();
     Node *search(Node *node, int key);
     Node *findSuccessor(Node *node);
     Node *findMin(Node *node);
