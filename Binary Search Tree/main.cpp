@@ -16,7 +16,7 @@ int main()
         array[i] = node;
     }
     cout << "Max: " << tree.findMax()->key << endl;
-    cout << "Inorder: ";
+    cout << "Inorder:\t";
     tree.printIn();
     cout << endl;
 
@@ -25,7 +25,7 @@ int main()
     tree.del(*it);
     array.erase(it);
 
-    cout << "After deletion: ";
+    cout << "After deletion:\t";
     tree.printIn();
     cout << endl;
 }
