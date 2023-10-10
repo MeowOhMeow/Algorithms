@@ -50,10 +50,22 @@ void MergeSort::merge(vector<int> &array, int p, int q, int r)
     copyArrays(array, arrayL, arrayR, nl, nr, p, q);
 
     combine(array, arrayL, arrayR, p, r);
+    cout << "Step " << ++step << ": ";
+    for (int i = p; i <= r; i++)
+    {
+        cout << dict[array[i]] << " ";
+    }
+    cout << " merge" << endl;
 }
 
 void MergeSort::mergeSort(vector<int> &array, int p, int r)
 {
+    cout << "Step " << ++step << ": ";
+    for (int i = p; i <= r; i++)
+    {
+        cout << dict[array[i]] << " ";
+    }
+    cout << " divide" << endl;
     if (p >= r)
         return;
 

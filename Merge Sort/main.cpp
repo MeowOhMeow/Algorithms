@@ -4,12 +4,7 @@
 
 int main()
 {
-    int size = 100000;
-    vector<int> array(size);
-    for (int i = 0; i < size; i++)
-    {
-        array[i] = rand() % size;
-    }
+    vector<int> array = {3, 5, 6, 4, 5, 1, 2, 4, 5};
 
     MergeSort sorter;
     Result result = sorter.sort(array);

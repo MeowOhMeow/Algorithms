@@ -4,6 +4,7 @@
 #include "result.h"
 #include <chrono>
 #include <limits.h>
+#include <iostream>
 
 using namespace std;
 
@@ -15,6 +16,8 @@ private:
     void combine(vector<int> &array, vector<int> &arrayL, vector<int> &arrayR, int from, int to);
     void mergeSort(vector<int> &array, int p, int r);
     void merge(vector<int> &array, int p, int q, int r);
+    int step = 0;
+    char dict[7] = {' ', 'B', 'E', 'N', 'S', 'T', 'U'};
 
 public:
     Result sort(vector<int> &array);
