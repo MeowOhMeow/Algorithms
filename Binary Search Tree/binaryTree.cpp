@@ -1,4 +1,4 @@
-#include "binarySearchTree.h"
+#include "binaryTree.h"
 
 using namespace std;
 
@@ -42,6 +42,21 @@ void BinaryTree::printPost(Node *node)
         printIn(node->right);
         cout << node->key << ", ";
     }
+}
+
+void BinaryTree::printStructure(Node* root, int indent) {
+    if (root == NIL) {
+        return;
+    }
+
+    // Print right subtree with increased indentation
+    printStructure(root->right, indent + 4);
+
+    // Print current node with indentation
+    std::cout << std::string(indent, ' ') << root->key << std::endl;
+
+    // Print left subtree with increased indentation
+    printStructure(root->left, indent + 4);
 }
 
 Node *BinaryTree::search(Node *node, int key)
