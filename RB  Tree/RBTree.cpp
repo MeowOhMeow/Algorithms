@@ -67,7 +67,7 @@ void RBTree::rightRotate(Node *node)
     node->parent = left;
 }
 
-void RBTree::RBInsert(Node *node)
+void RBTree::insert(Node *node)
 {
     BinaryTree::insert(node);
     node->color = RED;
@@ -132,7 +132,7 @@ void RBTree::RBInsertFixup(Node *node)
     root->color = BLACK;
 }
 
-void RBTree::RBDelete(Node *node)
+void RBTree::del(Node *node)
 {
 
 }

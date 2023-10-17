@@ -23,8 +23,8 @@ public:
     void printPost() { printPost(root); }
     void printStructure() { printStructure(root, 0); }
 
-    void RBInsert(Node *node);
-    void RBDelete(Node *node);
+    void insert(Node *node);
+    void del(Node *node);
     void RBInsertFixup(Node *node);
     void RBDeleteFixup(Node *node);
 };

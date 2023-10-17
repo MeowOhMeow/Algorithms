@@ -12,7 +12,7 @@ int main()
     for (int i = 0; i < array.size(); i++)
     {
         Node *node = new Node(rand() % size);
-        tree.RBInsert(node);
+        tree.insert(node);
         array[i] = node;
     }
     cout << "Max: " << tree.findMax()->key << endl;
