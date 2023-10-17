@@ -23,6 +23,7 @@ int main()
     int toBeDeleted = 2;
     vector<Node *>::iterator it = array.begin() + toBeDeleted;
     tree.del(*it);
+    delete *it;
     array.erase(it);
 
     cout << "After deletion:\t";
