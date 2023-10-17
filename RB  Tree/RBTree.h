@@ -10,6 +10,10 @@
 class RBTree : public BinaryTree
 {
 private:
+    void insertFixup(Node *node);
+    void deleteFixup(Node *node);
+    void transplant(Node *oldNode, Node *newNode);
+
     void leftRotate(Node *node);
     void rightRotate(Node *node);
     void printIn(Node *node);
@@ -25,8 +29,6 @@ public:
 
     void insert(Node *node);
     void del(Node *node);
-    void RBInsertFixup(Node *node);
-    void RBDeleteFixup(Node *node);
 };
 
 #endif /* rb_tree_h */

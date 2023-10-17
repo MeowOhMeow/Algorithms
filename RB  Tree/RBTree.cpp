@@ -21,6 +21,18 @@ void RBTree::printStructure(Node *node, int indent)
     printStructure(node->left, indent + 4);
 }
 
+void RBTree::transplant(Node *oldNode, Node *newNode)
+{
+    if (oldNode->parent == NIL)
+        root = newNode;
+    else if (oldNode == oldNode->parent->left)
+        oldNode->parent->left = newNode;
+    else
+        oldNode->parent->right = newNode;
+
+    newNode->parent = oldNode->parent;
+}
+
 void RBTree::leftRotate(Node *node)
 {
     Node *right = node->right;
@@ -71,10 +83,10 @@ void RBTree::insert(Node *node)
 {
     BinaryTree::insert(node);
     node->color = RED;
-    RBInsertFixup(node);
+    insertFixup(node);
 }
 
-void RBTree::RBInsertFixup(Node *node)
+void RBTree::insertFixup(Node *node)
 {
     while (node->parent->color == RED)
     {
@@ -134,5 +146,4 @@ void RBTree::RBInsertFixup(Node *node)
 
 void RBTree::del(Node *node)
 {
-
 }
