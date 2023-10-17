@@ -4,11 +4,7 @@
 class Node
 {
 public:
-    Node() {
-        this->parent = this;
-        this->left = this;
-        this->right = this;
-    }
+    Node() {}
     Node(int key);
     Node *parent, *left, *right;
     int key;
