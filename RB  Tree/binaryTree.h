@@ -6,14 +6,17 @@
 
 class BinaryTree
 {
-protected:
-    Node *root = NIL;
-
-    void transplant(Node *oldNode, Node *newNode);
+private:
     void printIn(Node *node);
     void printPre(Node *node);
     void printPost(Node *node);
     void printStructure(Node *node, int indent);
+
+protected:
+    Node *root = NIL;
+
+    void transplant(Node *oldNode, Node *newNode);
+
     Node *findMin(Node *node);
     Node *findMax(Node *node);
 
