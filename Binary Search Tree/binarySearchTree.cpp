@@ -4,19 +4,19 @@ using namespace std;
 
 void BinaryTree::transplant(Node *oldNode, Node *newNode)
 {
-    if (oldNode->parent == nullptr)
+    if (oldNode->parent == NIL)
         root = newNode;
     else if (oldNode == oldNode->parent->left)
         oldNode->parent->left = newNode;
     else
         oldNode->parent->right = newNode;
-    if (newNode != nullptr)
+    if (newNode != NIL)
         newNode->parent = oldNode->parent;
 }
 
 void BinaryTree::printIn(Node *node)
 {
-    if (node != nullptr)
+    if (node != NIL)
     {
         printIn(node->left);
         cout << node->key << ", ";
@@ -26,7 +26,7 @@ void BinaryTree::printIn(Node *node)
 
 void BinaryTree::printPre(Node *node)
 {
-    if (node != nullptr)
+    if (node != NIL)
     {
         cout << node->key << ", ";
         printIn(node->left);
@@ -36,7 +36,7 @@ void BinaryTree::printPre(Node *node)
 
 void BinaryTree::printPost(Node *node)
 {
-    if (node != nullptr)
+    if (node != NIL)
     {
         printIn(node->left);
         printIn(node->right);
@@ -46,7 +46,7 @@ void BinaryTree::printPost(Node *node)
 
 Node *BinaryTree::search(Node *node, int key)
 {
-    if (node == nullptr or key == node->key)
+    if (node == NIL or key == node->key)
         return node;
     if (key < node->key)
         return search(node->left, key);
@@ -56,11 +56,11 @@ Node *BinaryTree::search(Node *node, int key)
 
 Node *BinaryTree::findSuccessor(Node *node)
 {
-    if (node->right != nullptr)
+    if (node->right != NIL)
         return findMin(node->right);
 
     Node *parent;
-    while (parent != nullptr and node == parent->right)
+    while (parent != NIL and node == parent->right)
     {
         node = parent;
         parent = parent->parent;
@@ -70,24 +70,24 @@ Node *BinaryTree::findSuccessor(Node *node)
 
 Node *BinaryTree::findMin(Node *node)
 {
-    while (node->left != nullptr)
+    while (node->left != NIL)
         node = node->left;
     return node;
 }
 
 Node *BinaryTree::findMax(Node *node)
 {
-    while (node->right != nullptr)
+    while (node->right != NIL)
         node = node->right;
     return node;
 }
 
 void BinaryTree::insert(Node *node)
 {
-    Node *parent = nullptr;
+    Node *parent = NIL;
     Node *child = root;
 
-    while (child != nullptr)
+    while (child != NIL)
     {
         parent = child;
         if (node->key < child->key)
@@ -97,7 +97,7 @@ void BinaryTree::insert(Node *node)
     }
     node->parent = parent;
 
-    if (parent == nullptr)
+    if (parent == NIL)
         root = node;
 
     else if (node->key < parent->key)
@@ -108,9 +108,9 @@ void BinaryTree::insert(Node *node)
 
 void BinaryTree::del(Node *toBeDeleted)
 {
-    if (toBeDeleted->left == nullptr)
+    if (toBeDeleted->left == NIL)
         transplant(toBeDeleted, toBeDeleted->right);
-    else if (toBeDeleted->right == nullptr)
+    else if (toBeDeleted->right == NIL)
         transplant(toBeDeleted, toBeDeleted->left);
     else
     {

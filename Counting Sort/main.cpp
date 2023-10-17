@@ -1,5 +1,7 @@
 #include "countingSort.h"
 #include "result.h"
+#include "data.h"
+
 #include <random>
 
 using namespace std;
@@ -8,11 +10,11 @@ int main()
 {
     int range = 10;
     int size = 100;
-    vector<int> input(size);
-    vector<int> output(size);
+    vector<Data> input(size);
+    vector<Data> output(size);
     for (int i = 0; i < size; i++)
     {
-        input[i] = rand() % range;
+        input[i] = Data(rand() % range);
     }
 
     CountingSort sorter;

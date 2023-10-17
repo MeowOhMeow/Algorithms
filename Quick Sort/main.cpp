@@ -7,12 +7,7 @@ using namespace std;
 
 int main()
 {
-    int size = 10000;
-    vector<int> array(size);
-    for (int i = 0; i < size; i++)
-    {
-        array[i] = rand() % size;
-    }
+    vector<int> array = {2, 4, 5, 3, 4, 0, 1, 3, 4};
 
     QuickSort sorter;
     Result result = sorter.sort(array);

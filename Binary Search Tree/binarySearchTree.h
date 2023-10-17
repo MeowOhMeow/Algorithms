@@ -7,7 +7,7 @@
 class BinaryTree
 {
 private:
-    Node *root = nullptr;
+    Node *root = NIL;
 
     void transplant(Node *oldNode, Node *newNode);
     void printIn(Node *node);

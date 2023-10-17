@@ -4,9 +4,16 @@
 class Node
 {
 public:
-    Node(int key) { this->key = key; }
-    Node *parent = nullptr, *left = nullptr, *right = nullptr;
+    Node() {
+        this->parent = this;
+        this->left = this;
+        this->right = this;
+    }
+    Node(int key);
+    Node *parent, *left, *right;
     int key;
 };
+
+extern Node *NIL;
 
 #endif /* node_h */
