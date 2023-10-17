@@ -155,4 +155,125 @@ void RBTree::insertFixup(Node *node)
 
 void RBTree::del(Node *node)
 {
+    int originalColor = node->color;
+    Node *child = NIL;
+    // node has none or only right child
+    if (node->left == NIL)
+    {
+        child = node->right;
+        transplant(node, node->right);
+    }
+    // node has only left child
+    else if (node->right == NIL)
+    {
+        child = node->left;
+        transplant(node, node->left);
+    }
+    // node has both children
+    else
+    {
+        Node *successor = findMin(node->right);
+        child = successor->right;
+        originalColor = successor->color;
+        // successor is node's right child
+        if (successor->parent == node)
+            child->parent = successor;
+        // successor is not node's right child
+        else
+        {
+            transplant(successor, successor->right);
+            successor->right = node->right;
+            successor->right->parent = successor;
+        }
+        transplant(node, successor);
+        successor->left = node->left;
+        successor->left->parent = successor;
+        successor->color = node->color;
+    }
+    if (originalColor == BLACK)
+        deleteFixup(child);
+}
+
+void RBTree::deleteFixup(Node *node)
+{
+    while (node != root and node->color == BLACK)
+    {
+        // node is left child
+        if (node == node->parent->left)
+        {
+            Node *sibling = node->parent->right;
+            // case 1: sibling is red
+            if (sibling->color == RED)
+            {
+                // these operations will convert into case 2, 3, or 4
+                sibling->color = BLACK;
+                node->parent->color = RED;
+                leftRotate(node->parent);
+                sibling = node->parent->right;
+            }
+            // case 2: sibling is black and both of sibling's children are black
+            if (sibling->left->color == BLACK and sibling->right->color == BLACK)
+            {
+                sibling->color = RED;
+                node = node->parent;
+            }
+            // case 3: left nephew is red
+            else if (sibling->right->color == BLACK)
+            {
+                // these operations will convert into case 4
+                sibling->left->color = BLACK;
+                sibling->color = RED;
+                rightRotate(sibling);
+                sibling = node->parent->right;
+            }
+            // case 4: right nephew is red
+            else
+            {
+                sibling->color = node->parent->color;
+                node->parent->color = BLACK;
+                sibling->right->color = BLACK;
+                leftRotate(node->parent);
+                node = root;
+            }
+        }
+        // node is right child
+        else
+        {
+            Node *sibling = node->parent->left;
+            // case 1: sibling is red
+            if (sibling->color == RED)
+            {
+                // these operations will convert into case 2, 3, or 4
+                sibling->color = BLACK;
+                node->parent->color = RED;
+                rightRotate(node->parent);
+                sibling = node->parent->left;
+            }
+            // case 2: sibling is black and both of sibling's children are black
+            if (sibling->left->color == BLACK and sibling->right->color == BLACK)
+            {
+                sibling->color = RED;
+                node = node->parent;
+            }
+            // case 3: right nephew is red
+            else if (sibling->left->color == BLACK)
+            {
+                // these operations will convert into case 4
+                sibling->right->color = BLACK;
+                sibling->color = RED;
+                leftRotate(sibling);
+                sibling = node->parent->left;
+            }
+            // case 4: left nephew is red
+            else
+            {
+                sibling->color = node->parent->color;
+                node->parent->color = BLACK;
+                sibling->left->color = BLACK;
+                rightRotate(node->parent);
+                node = root;
+            }
+        }
+    }
+    node->color = BLACK;
 }
