@@ -11,14 +11,23 @@ void RBTree::printStructure(Node *node, int indent)
     // Print right subtree with increased indentation
     printStructure(node->right, indent + 4);
 
+    cout << string(indent, ' ');
+    printNode(node);
+
+    // Print left subtree with increased indentation
+    printStructure(node->left, indent + 4);
+}
+
+void RBTree::printNode(Node *node)
+{
+    if (node == NIL)
+        return;
+
     if (node->color == RED)
         cout << BRIGHT_RED;
     else
         cout << BRIGHT_BLACK;
-    cout << string(indent, ' ') << node->key << RESET << endl;
-
-    // Print left subtree with increased indentation
-    printStructure(node->left, indent + 4);
+    cout << node->key << RESET << endl;
 }
 
 void RBTree::transplant(Node *oldNode, Node *newNode)

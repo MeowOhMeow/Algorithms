@@ -20,6 +20,7 @@ private:
     void printPre(Node *node);
     void printPost(Node *node);
     void printStructure(Node *node, int indent);
+    void printNode(Node *node);
 
 public:
     void printIn() { printIn(root); }
