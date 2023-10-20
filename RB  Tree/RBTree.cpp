@@ -153,8 +153,12 @@ void RBTree::insertFixup(Node *node)
     root->color = BLACK;
 }
 
-void RBTree::del(Node *node)
+bool RBTree::remove(int value)
 {
+    Node *node = search(root, value);
+    if (node == NIL)
+        return false;
+
     int originalColor = node->color;
     Node *child = NIL;
     // node has none or only right child
@@ -192,6 +196,9 @@ void RBTree::del(Node *node)
     }
     if (originalColor == BLACK)
         deleteFixup(child);
+
+    delete node;
+    return true;
 }
 
 void RBTree::deleteFixup(Node *node)
@@ -276,4 +283,10 @@ void RBTree::deleteFixup(Node *node)
         }
     }
     node->color = BLACK;
+}
+
+void RBTree::removeAll()
+{
+    while (root != NIL)
+        remove(root->key);
 }

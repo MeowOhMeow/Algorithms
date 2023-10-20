@@ -23,13 +23,15 @@ private:
     void printNode(Node *node);
 
 public:
+    ~RBTree() { removeAll(); }
     void printIn() { printIn(root); }
     void printPre() { printPre(root); }
     void printPost() { printPost(root); }
     void printStructure() { printStructure(root, 0); }
 
     void insert(Node *node);
-    void del(Node *node);
+    bool remove(int value);
+    void removeAll();
 };
 
 #endif /* rb_tree_h */
