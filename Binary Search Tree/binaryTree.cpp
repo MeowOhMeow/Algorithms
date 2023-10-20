@@ -44,8 +44,10 @@ void BinaryTree::printPost(Node *node)
     }
 }
 
-void BinaryTree::printStructure(Node* root, int indent) {
-    if (root == NIL) {
+void BinaryTree::printStructure(Node *root, int indent)
+{
+    if (root == NIL)
+    {
         return;
     }
 
@@ -121,23 +123,40 @@ void BinaryTree::insert(Node *node)
         parent->right = node;
 }
 
-void BinaryTree::del(Node *toBeDeleted)
+bool BinaryTree::remove(int value)
 {
-    if (toBeDeleted->left == NIL)
-        transplant(toBeDeleted, toBeDeleted->right);
-    else if (toBeDeleted->right == NIL)
-        transplant(toBeDeleted, toBeDeleted->left);
+    Node *node = search(root, value);
+    if (node == NIL)
+        return false;
+    if (node->left == NIL)
+        transplant(node, node->right);
+    else if (node->right == NIL)
+        transplant(node, node->left);
     else
     {
-        Node *successor = findMin(toBeDeleted->right);
-        if (successor->parent != toBeDeleted)
+        Node *successor = findMin(node->right);
+        if (successor->parent != node)
         {
             transplant(successor, successor->right);
-            successor->right = toBeDeleted->right;
+            successor->right = node->right;
             successor->right->parent = successor;
         }
-        transplant(toBeDeleted, successor);
-        successor->left = toBeDeleted->left;
+        transplant(node, successor);
+        successor->left = node->left;
         successor->left->parent = successor;
     }
+
+    delete node;
+}
+
+void BinaryTree::removeAll()
+{
+    while (root != NIL)
+        remove(root->key);
+}
+
+BinaryTree::~BinaryTree()
+{
+    // cout << "Removing all nodes...\n";
+    removeAll();
 }

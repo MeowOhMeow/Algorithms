@@ -121,7 +121,7 @@ void BinaryTree::insert(Node *node)
         parent->right = node;
 }
 
-void BinaryTree::del(Node *toBeDeleted)
+void BinaryTree::remove(Node *toBeDeleted)
 {
     if (toBeDeleted->left == NIL)
         transplant(toBeDeleted, toBeDeleted->right);

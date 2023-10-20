@@ -1,31 +1,23 @@
 #include "binaryTree.h"
-#include <random>
-#include <vector>
 
 using namespace std;
 
 int main()
 {
     int size = 10;
+    int values[] = {41, 38, 31, 12, 19, 8, 1, 4, 9, 20};
     BinaryTree tree;
-    vector<Node *> array(size);
-    for (int i = 0; i < array.size(); i++)
+    for (int i = 0; i < size; i++)
     {
-        Node *node = new Node(rand() % size);
+        Node *node = new Node(values[i]);
         tree.insert(node);
-        array[i] = node;
     }
     cout << "Max: " << tree.findMax()->key << endl;
     cout << "Inorder:\t";
     tree.printIn();
     cout << endl;
 
-    int toBeDeleted = 2;
-    vector<Node *>::iterator it = array.begin() + toBeDeleted;
-    tree.del(*it);
-    delete *it;
-    array.erase(it);
-
+    tree.remove(values[1]);
     cout << "After deletion:\t";
     tree.printIn();
     cout << endl;

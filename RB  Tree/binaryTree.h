@@ -30,7 +30,7 @@ public:
     Node *findMin() { return findMin(root); }
     Node *findMax() { return findMax(root); }
     void insert(Node *node);
-    void del(Node *node);
+    void remove(Node *node);
 };
 
 #endif /* binarySearchTree_h */

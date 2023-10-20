@@ -21,6 +21,7 @@ protected:
     Node *findMax(Node *node);
 
 public:
+    ~BinaryTree();
     void printIn() { printIn(root); }
     void printPre() { printPre(root); }
     void printPost() { printPost(root); }
@@ -30,7 +31,8 @@ public:
     Node *findMin() { return findMin(root); }
     Node *findMax() { return findMax(root); }
     void insert(Node *node);
-    void del(Node *node);
+    bool remove(int value);
+    void removeAll();
 };
 
 #endif /* binarySearchTree_h */
