@@ -147,6 +147,7 @@ bool BinaryTree::remove(int value)
     }
 
     delete node;
+    return true;
 }
 
 void BinaryTree::removeAll()
