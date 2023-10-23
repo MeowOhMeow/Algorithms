@@ -1,5 +1,12 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "debug.h": "c",
+        "errno.h": "c",
+        "string": "cpp",
+        "array": "cpp",
+        "vector": "cpp",
+        "fstream": "cpp"
     }
 }
