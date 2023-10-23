@@ -7,6 +7,7 @@
 */
 Pair::Pair(int var1, int var2)
 {
+    // the data is not guaranteed to be in order
     if (var1 > var2)
     {
         upper = var1;

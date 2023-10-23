@@ -2,9 +2,9 @@
 #define QUICKSORT_H
 
 #include <vector>
-#include <random>
+#include <random>       // for rand(), i didn't set seed
 
-using namespace std;
+using namespace std;    // for vector
 
 /*
     this class is used to sort the vector of data
@@ -27,9 +27,12 @@ public:
     void sort(vector<T> &array, bool reverse = false);
 };
 
+// I tried to put the implementation in a separate file, but it didn't work
 template <typename T>
 void QuickSort<T>::sort(vector<T> &array, bool reverse)
 {
+    // add reverse sort to make it look more robust
+    // this addtional operation cost O(1) and twice the QuickSort class size
     if (reverse)
     {
         reverse_quickSort(array, 0, array.size() - 1);
@@ -71,6 +74,7 @@ inline int QuickSort<T>::randomizedPartition(vector<T> &array, int p, int r)
     return partition(array, p, r);
 }
 
+// this function's name is too long, but i don't want to change it
 template <typename T>
 inline int QuickSort<T>::reverse_randomizedPartition(vector<T> &array, int p, int r)
 {

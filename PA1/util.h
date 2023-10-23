@@ -14,7 +14,7 @@ using namespace std;
 
 string get_program_name(char *argv[]);
 vector<Pair> init(int argc, char *argv[]);
-void load(ifstream &fin, vector<Pair> &arr);
+vector<Pair> load(char *filename);
 void save(char *filename, vector<Pair> &arr, int the_best_score, int the_best_index);
 void sort(vector<Pair> &arr);
 void build_best_paths(vector<Pair> &arr);
