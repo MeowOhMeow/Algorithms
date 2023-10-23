@@ -11,7 +11,6 @@ private:
     void quickSort(vector<int> &array, int p, int r);
     int randomizedPartition(vector<int> &array, int p, int r);
     int partition(vector<int> &array, int p, int r);
-    char dict[6] = {'B', 'E', 'N', 'S', 'T', 'U'};
 public:
     Result sort(vector<int> &array);
 };
