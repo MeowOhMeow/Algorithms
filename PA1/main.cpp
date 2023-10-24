@@ -1,11 +1,16 @@
 #include "util.h"
 #include "solution.h"
 
-#include <chrono>
+#include <chrono>   // for timing
 #include <iostream>
 
 using namespace std;
 
+/*
+    arguments: argc, argv[]
+    return: int
+    description: main function
+*/
 int main(int argc, char *argv[])
 {
     auto start = chrono::high_resolution_clock::now();

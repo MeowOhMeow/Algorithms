@@ -3,7 +3,7 @@
 
 #include <vector>
 
-using namespace std;
+using namespace std; // for quick sort
 
 /*
     this class is used to store the pairs of numbers
@@ -19,7 +19,7 @@ private:
 public:
     // constructors
 
-    Pair() = default;
+    Pair() = default;   // used when resizing the vector
     Pair(int var1, int var2);
 
     // data members

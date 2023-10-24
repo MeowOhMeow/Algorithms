@@ -1,10 +1,15 @@
 #include "solution.h"
 
+using namespace std;
+
+// global variables
 unordered_map<int, int> pair_map;
 vector<Pair> best_route;
 int **max_subsets;
 int num_of_points;
 int best_score;
+
+// global variables for solution.cpp only
 int idx = 0;
 
 // this function is the most frequently called function in solve_max_subset()

@@ -3,12 +3,8 @@
 
 #include <vector>
 #include <unordered_map>
-#include <iostream>
 
 #include "pair.h"
-#include "quickSort.h"
-
-using namespace std;
 
 void solve();
 

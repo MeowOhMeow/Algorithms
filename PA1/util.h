@@ -1,13 +1,11 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <iostream>
 #include <fstream>
 #include <string>
 
 #include "debug.h"
-#include "pair.h"
-#include "solution.h"
+#include "solution.h"   // for global variables
 #include "quickSort.h"
 
 using namespace std;
