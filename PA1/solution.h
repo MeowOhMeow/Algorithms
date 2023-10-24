@@ -11,7 +11,6 @@
 using namespace std;
 
 void solve();
-void sort(vector<Pair> &arr);
 
 extern unordered_map<int, int> pair_map;
 extern vector<Pair> best_route;

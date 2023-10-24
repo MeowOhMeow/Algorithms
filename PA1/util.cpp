@@ -61,7 +61,17 @@ void save(char *filename)
     fout << best_score << endl;
     for (int i = 0; i < best_route.size(); i++)
     {
-        fout << best_route[i].get_lower() << " " << best_route[i].get_upper() << endl;
+        fout << best_route[i].lower << " " << best_route[i].upper << endl;
     }
     fout.close();
+}
+
+// clean up
+void clean()
+{
+    for (int i = 0; i < num_of_points; i++)
+    {
+        delete[] max_subsets[i];
+    }
+    delete[] max_subsets;
 }

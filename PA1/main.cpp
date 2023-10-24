@@ -13,8 +13,9 @@ int main(int argc, char *argv[])
     // main program
     init(argc, argv);
     solve();
-    sort(best_route); // quick sort
+    qsort(best_route); // quick sort
     save(argv[2]);    // save the result
+    clean();          // clean up
 
     auto end = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);

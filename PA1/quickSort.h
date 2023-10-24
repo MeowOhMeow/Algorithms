@@ -7,7 +7,7 @@
 using namespace std;    // for vector
 
 template <typename T>
-void qsort(vector<T> &array, bool reverse)
+void qsort(vector<T> &array, bool reverse=false)
 {
     // add reverse sort to make it look more robust
     // this addtional operation cost O(1) and twice the QuickSort class size

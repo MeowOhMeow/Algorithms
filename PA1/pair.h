@@ -14,9 +14,7 @@ using namespace std;
 class Pair
 {
 private:
-    // data members
-    int upper;
-    int lower;
+    
 
 public:
     // constructors
@@ -24,10 +22,10 @@ public:
     Pair() = default;
     Pair(int var1, int var2);
 
-    // getters and setters
+    // data members
 
-    int get_upper();
-    int get_lower();
+    int upper;
+    int lower;
 
     // operators
     bool operator<=(const Pair &rhs) const

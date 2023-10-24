@@ -8,6 +8,7 @@
 #include "debug.h"
 #include "pair.h"
 #include "solution.h"
+#include "quickSort.h"
 
 using namespace std;
 
@@ -16,5 +17,6 @@ void init(int argc, char *argv[]);
 void init_max_subsets();
 void load(char *filename);
 void save(char *filename);
+void clean();
 
 #endif // UTIL_H
