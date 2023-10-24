@@ -2,9 +2,9 @@
 #define QUICKSORT_H
 
 #include <vector>
-#include <random>       // for rand(), i didn't set seed
+#include <random> // for rand(), i didn't set seed
 
-using namespace std;    // for vector
+using namespace std; // for vector
 
 template <typename T>
 void qsort(vector<T> &array, bool reverse=false)
@@ -13,61 +13,61 @@ void qsort(vector<T> &array, bool reverse=false)
     // this addtional operation cost O(1) and twice the QuickSort class size
     if (reverse)
     {
-        _reverse_quickSort(array, 0, array.size() - 1);
+        reversequickSort(array, 0, array.size() - 1);
     }
     else
     {
-        _quickSort(array, 0, array.size() - 1);
+        quickSort(array, 0, array.size() - 1);
     }
 }
 
-// this is private. don't call it!!!
+// use quick sort to sort the array
 template <typename T>
-void _quickSort(vector<T> &array, int p, int r) 
+void quickSort(vector<T> &array, int p, int r)
 {
     if (p < r)
     {
-        int q = _randomizedPartition(array, p, r);
-        _quickSort(array, p, q - 1);
-        _quickSort(array, q + 1, r);
+        int q = randomizedPartition(array, p, r);
+        quickSort(array, p, q - 1);
+        quickSort(array, q + 1, r);
     }
 }
 
-// private!!!
+// reversed one
 template <typename T>
-void _reverse_quickSort(vector<T> &array, int p, int r) 
+void reversequickSort(vector<T> &array, int p, int r)
 {
     if (p < r)
     {
-        int q = _reverse_randomizedPartition(array, p, r);
-        _reverse_quickSort(array, p, q - 1);
-        _reverse_quickSort(array, q + 1, r);
+        int q = reverserandomizedPartition(array, p, r);
+        reversequickSort(array, p, q - 1);
+        reversequickSort(array, q + 1, r);
     }
 }
 
-// don't!!!
+// use random to choose pivot, this will make the worst case less possible
 template <typename T>
-inline int _randomizedPartition(vector<T> &array, int p, int r) 
+inline int randomizedPartition(vector<T> &array, int p, int r)
 {
     int i = rand() % (r - p) + p;
     _swap(array[r], array[i]);
 
-    return _partition(array, p, r);
+    return partition(array, p, r);
 }
 
 // this function's name is too long, but i don't want to change it. and don't call it!!!
 template <typename T>
-inline int _reverse_randomizedPartition(vector<T> &array, int p, int r)
+inline int reverserandomizedPartition(vector<T> &array, int p, int r)
 {
     int i = rand() % (r - p) + p;
     _swap(array[r], array[i]);
 
-    return _reverse_partition(array, p, r);
+    return reversepartition(array, p, r);
 }
 
-// stop!!!
+// core function
 template <typename T>
-inline int _partition(vector<T> &array, int p, int r) 
+inline int partition(vector<T> &array, int p, int r)
 {
     T x = array[r];
     int i = p - 1;
@@ -84,9 +84,9 @@ inline int _partition(vector<T> &array, int p, int r)
     return i + 1;
 }
 
-// just stop!!!
+// core function
 template <typename T>
-inline int _reverse_partition(vector<T> &array, int p, int r) 
+inline int reversepartition(vector<T> &array, int p, int r)
 {
     T x = array[r];
     int i = p - 1;
@@ -103,9 +103,9 @@ inline int _reverse_partition(vector<T> &array, int p, int r)
     return i + 1;
 }
 
-// this is ok
+// just swap
 template <typename T>
-inline void _swap(T &a, T &b) 
+inline void _swap(T &a, T &b)
 {
     T temp = a;
     a = b;
