@@ -8,6 +8,7 @@
         "array": "cpp",
         "vector": "cpp",
         "fstream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "random": "cpp"
     }
 }

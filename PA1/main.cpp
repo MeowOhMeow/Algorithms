@@ -1,4 +1,6 @@
 #include "util.h"
+#include "solution.h"
+
 #include <chrono>
 #include <iostream>
 
