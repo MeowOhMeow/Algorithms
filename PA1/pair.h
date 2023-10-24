@@ -7,10 +7,9 @@ using namespace std;
 
 /*
     this class is used to store the pairs of numbers
-    and the best route and score for each pair
 
     the pair will be defined as (upper, lower)
-    where higher is the larger number and lower is the smaller number
+    where upper is the larger number and lower is the smaller number
 */
 class Pair
 {
@@ -18,8 +17,6 @@ private:
     // data members
     int upper;
     int lower;
-    int my_best_score;
-    vector<Pair> my_best_route;
 
 public:
     // constructors
@@ -31,29 +28,16 @@ public:
 
     int get_upper();
     int get_lower();
-    int get_my_best_score();
-    vector<Pair> get_my_best_route();
-    void set_my_best_score(int score);
-    void set_my_best_route(vector<Pair> route);
 
-    /*
-        arguments: Pair
-        return: bool
-        description: overload the <= operator
-    */
-    bool operator<=(const Pair &p) const
+    // operators
+    bool operator<=(const Pair &rhs) const
     {
-        return (this->upper <= p.upper);
+        return (lower <= rhs.lower);
     }
 
-    /*
-        arguments: Pair
-        return: bool
-        description: overload the >= operator
-    */
-    bool operator>=(const Pair &p) const
+    bool operator>=(const Pair &rhs) const
     {
-        return (this->upper >= p.upper);
+        return (lower >= rhs.lower);
     }
 };
 

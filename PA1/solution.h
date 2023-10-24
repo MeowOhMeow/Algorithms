@@ -2,15 +2,21 @@
 #define SOLUTION_H
 
 #include <vector>
+#include <unordered_map>
+#include <iostream>
+
 #include "pair.h"
 #include "quickSort.h"
 
 using namespace std;
 
+void solve();
 void sort(vector<Pair> &arr);
-void build_best_paths(vector<Pair> &arr);
 
-extern int the_best_score;
-extern int the_best_index;
+extern unordered_map<int, int> pair_map;
+extern vector<Pair> best_route;
+extern int **max_subsets;
+extern int num_of_points;
+extern int best_score;
 
 #endif // SOLUTION_H

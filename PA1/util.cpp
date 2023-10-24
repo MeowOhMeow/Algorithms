@@ -18,50 +18,47 @@ string get_program_name(char *argv[])
 }
 
 // initialize the vector
-vector<Pair> init(int argc, char *argv[])
+void init(int argc, char *argv[])
 {
     Assert(argc == 3, "Usage: %s <input file> <output file>", get_program_name(argv).c_str());
-    return load(argv[1]);
+    load(argv[1]);
 }
 
 // what you see is what you get
-vector<Pair> load(char *filename)
+void load(char *filename)
 {
     ifstream fin;
     fin.open(filename);
     Assert(fin.is_open(), "Error: cannot open file %s", filename);
 
-    string line; // to store stuff
+    string line; // to hold stuff
 
     getline(fin, line);
-    vector<Pair> arr = vector<Pair>(stoi(line) / 2); // reserve space
+    num_of_points = stoi(line); // number of cords
 
-    int counter = 0;
     while (getline(fin, line))
     {
-        if (line == "0") // this is kinda useless, but it's in the original data
+        if (line == "0") // end of file
         {
             break;
         }
         size_t space = line.find(' '); // locate the space
         int var1 = stoi(line.substr(0, space));
         int var2 = stoi(line.substr(space + 1));
-        arr[counter++] = Pair(var1, var2);
+        pair_map[var1] = var2;
+        pair_map[var2] = var1;
     }
     fin.close();
-
-    return arr;
 }
 
-// save it!!!!!!!
-void save(char *filename, vector<Pair> &arr, int the_best_score, int the_best_index)
+// save the result
+void save(char *filename)
 {
     ofstream fout;
     fout.open(filename);
     Assert(fout.is_open(), "Error: cannot open file %s", filename);
 
-    fout << the_best_score << endl;
-    vector<Pair> best_route = arr[the_best_index].get_my_best_route();
+    fout << best_score << endl;
     for (int i = 0; i < best_route.size(); i++)
     {
         fout << best_route[i].get_lower() << " " << best_route[i].get_upper() << endl;

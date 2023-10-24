@@ -9,6 +9,7 @@
         "vector": "cpp",
         "fstream": "cpp",
         "iosfwd": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "new": "cpp"
     }
 }
