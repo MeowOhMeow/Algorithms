@@ -11,12 +11,12 @@ Pair::Pair(int var1, int var2)
     // although it is in order from the solution function
     // if (var1 < var2)
     // {
-    //     lower = var1;
-    //     upper = var2;
+        lower = var1;
+        upper = var2;
     // }
     // else
     // {
-        lower = var2;
-        upper = var1;
+    //     lower = var2;
+    //     upper = var1;
     // }
 }

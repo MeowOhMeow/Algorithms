@@ -66,7 +66,7 @@ void save(char *filename)
     fout.close();
 }
 
-// clean up
+// clean up memory
 void clean()
 {
     for (int i = 0; i < num_of_points; i++)

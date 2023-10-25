@@ -99,14 +99,14 @@ void extract_best_subsets(int lower, int upper)
     // case 1: overlapping.
     if (is_overlapping(lower, cord_point))
     {
-        best_route[idx++] = Pair(upper, cord_point);
+        best_route[idx++] = Pair(cord_point, upper);
         extract_best_subsets(lower, upper - 1);
     }
     // case 2: if the max subset including the cord is larger than the max subset excluding the cord
     else if (is_inside(lower, cord_point, upper) && is_including_cord_larger(lower, cord_point, upper))
     {
         // is_including_cord_larger() is the only function that uses the max_subsets array...
-        best_route[idx++] = Pair(upper, cord_point);
+        best_route[idx++] = Pair(cord_point, upper);
         // we need to extract the best subsets from both sides of the cord
         extract_best_subsets(lower, cord_point - 1);
         extract_best_subsets(cord_point + 1, upper - 1);
