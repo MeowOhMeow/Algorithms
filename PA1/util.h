@@ -6,7 +6,7 @@
 
 #include "debug.h"
 #include "solution.h"   // for global variables
-#include "quickSort.h"
+#include "mergeSort.h"
 
 using namespace std;
 
