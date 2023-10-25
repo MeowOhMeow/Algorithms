@@ -3,6 +3,36 @@
 
 using namespace std;
 
+void RBTree::printIn(Node *node)
+{
+    if (node == NIL)
+        return;
+
+    printIn(node->left);
+    printNode(node);
+    printIn(node->right);
+}
+
+void RBTree::printPre(Node *node)
+{
+    if (node == NIL)
+        return;
+
+    printNode(node);
+    printPre(node->left);
+    printPre(node->right);
+}
+
+void RBTree::printPost(Node *node)
+{
+    if (node == NIL)
+        return;
+
+    printPost(node->left);
+    printPost(node->right);
+    printNode(node);
+}
+
 void RBTree::printStructure(Node *node, int indent)
 {
     if (node == NIL)
