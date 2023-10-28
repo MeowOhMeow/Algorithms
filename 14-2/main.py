@@ -24,12 +24,12 @@ def LCS(A, B):
                 matrix[i][j] = max(matrix[i][j-1], matrix[i-1][j])
 
     # Find the longest common subsequence.
-    LCS = ""
+    LCSs = ""
     i = lengthA
     j = lengthB
     while i > 0 and j > 0:
         if A[i-1] == B[j-1]:
-            LCS = A[i-1] + LCS
+            LCSs = A[i-1] + LCSs
             i -= 1
             j -= 1
         elif matrix[i][j-1] > matrix[i-1][j]:
@@ -37,7 +37,7 @@ def LCS(A, B):
         else:
             i -= 1
 
-    return LCS
+    return LCSs
 
 
 def longest_palindrome_subsequence(A):
