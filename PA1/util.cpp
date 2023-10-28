@@ -17,13 +17,6 @@ string get_program_name(char *argv[])
     return program_name;
 }
 
-// initialize the vector
-void init(int argc, char *argv[])
-{
-    Assert(argc == 3, "Usage: %s <input file> <output file>", get_program_name(argv).c_str());
-    load(argv[1]);
-}
-
 // what you see is what you get
 void load(char *filename)
 {
@@ -49,6 +42,32 @@ void load(char *filename)
         pair_map[var2] = var1;
     }
     fin.close();
+}
+
+// initializing the max_subsets array
+void init_max_subsets()
+{
+    max_subsets = new int *[num_of_points];
+    for (int i = 0; i < num_of_points; i++)
+    {
+        max_subsets[i] = new int[num_of_points];
+        for (int j = 0; j < num_of_points; j++)
+        {
+            max_subsets[i][j] = 0;
+        }
+    }
+}
+
+/*
+    arguments: argc, argv[]
+    return: void
+    description: initialize the program, including loading the input file, initializing the max_subsets array
+*/
+void init(int argc, char *argv[])
+{
+    Assert(argc == 3, "Usage: %s <input file> <output file>", get_program_name(argv).c_str());
+    load(argv[1]);
+    init_max_subsets();
 }
 
 // save the result

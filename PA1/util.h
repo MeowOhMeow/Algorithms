@@ -10,10 +10,7 @@
 
 using namespace std;
 
-string get_program_name(char *argv[]);
 void init(int argc, char *argv[]);
-void init_max_subsets();
-void load(char *filename);
 void save(char *filename);
 void clean();
 

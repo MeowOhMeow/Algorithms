@@ -33,20 +33,6 @@ inline bool is_including_cord_larger(int lower, int cord_point, int upper)
     return max_subsets[lower][cord_point - 1] + max_subsets[cord_point + 1][upper - 1] + 1 > max_subsets[lower][upper - 1];
 }
 
-// initializing the max_subsets array
-void init_max_subsets()
-{
-    max_subsets = new int *[num_of_points];
-    for (int i = 0; i < num_of_points; i++)
-    {
-        max_subsets[i] = new int[num_of_points];
-        for (int j = 0; j < num_of_points; j++)
-        {
-            max_subsets[i][j] = 0;
-        }
-    }
-}
-
 // i can't think of a better name for this function
 inline void solve_max_subset(int lower, int upper)
 {
@@ -121,7 +107,6 @@ void extract_best_subsets(int lower, int upper)
 // this is the function that will be called in main
 void solve()
 {
-    init_max_subsets();
     solve_max_subsets();
     extract_best_subsets(0, num_of_points - 1);
 }
