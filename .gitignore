@@ -1,4 +1,5 @@
-.vscode/tasks.json
+# ignore all .vscode directory
+**/.vscode
 # ignore all .exe files
 **/*.exe
 **/*.tgz

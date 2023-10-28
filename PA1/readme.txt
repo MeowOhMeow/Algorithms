@@ -12,7 +12,7 @@
 	b11032006-p1/solution.cpp  	: cpp file
 	b11032006-p1/pair.h  		: define Pair class for print subset
 	b11032006-p1/pair.cpp  		: implementation
-	b11032006-p1/quickSort.h  	: quickSort macro for sorting
+	b11032006-p1/mergeSort.h  	: merge sort macro for sorting
   	b11032006-p1/Makefile		: Makefile
 	b11032006-p1/readme.txt		: 本檔案
 7. 編譯方式說明：        	
