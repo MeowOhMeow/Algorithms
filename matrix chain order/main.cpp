@@ -6,7 +6,7 @@
 using namespace std;
 
 const int length = 6;
-vector<std::pair<int, int>> matrix_dim = {{30, 35}, {35, 15}, {15, 5}, {5, 10}, {10, 20}, {20, 25}};
+vector<std::pair<int, int>> matrix_dim = {{5, 10}, {10, 3}, {3, 12}, {12, 5}, {5, 50}, {50, 6}} ;
 vector<vector<int>> cost_table(length, vector<int>(length, 0));
 vector<vector<int>> first_cut(length, vector<int>(length, 0));
 
