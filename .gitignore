@@ -1,5 +1,5 @@
 # ignore all .vscode directory
-**/.vscode
+**/.vscode/*
 # ignore all .exe files
 **/*.exe
 **/*.tgz
