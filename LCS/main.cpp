@@ -47,7 +47,6 @@ void LCS()
 
 void print(int i, int j)
 {
-    cout << "i: " << i << " j: " << j << endl;
     if (i == 0 || j == 0)
     {
         return;
@@ -67,9 +66,63 @@ void print(int i, int j)
     }
 }
 
+void LCS2()
+{
+    for (int i = 0; i < 8; i++)
+    {
+        matrix[i][0] = 0;
+    }
+    for (int j = 0; j < 7; j++)
+    {
+        matrix[0][j] = 0;
+    }
+    for (int i = 1; i < 8; i++)
+    {
+        for (int j = 1; j < 7; j++)
+        {
+            if (x[i - 1] == y[j - 1])
+            {
+                matrix[i][j] = matrix[i - 1][j - 1] + 1;
+            }
+            else if (matrix[i - 1][j] >= matrix[i][j - 1])
+            {
+                matrix[i][j] = matrix[i - 1][j];
+            }
+            else
+            {
+                matrix[i][j] = matrix[i][j - 1];
+            }
+        }
+    }
+}
+
+void print2(int i, int j)
+{
+    if (i == 0 || j == 0)
+    {
+        return;
+    }
+    if (x[i - 1] == y[j - 1])
+    {
+        print2(i - 1, j - 1);
+        cout << x[i - 1];
+    }
+    else if (matrix[i - 1][j] >= matrix[i][j - 1])
+    {
+        print2(i - 1, j);
+    }
+    else
+    {
+        print2(i, j - 1);
+    }
+}
+
 int main()
 {
     LCS();
     print(7, 6);
+    cout << endl;
+    LCS2();
+    print2(7, 6);
     return 0;
 }
