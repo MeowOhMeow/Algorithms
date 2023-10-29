@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 #define X_EQUALS_Y 1
 #define X_LESS_THAN_Y 2
@@ -7,24 +8,35 @@
 
 using namespace std;
 
-string x = "ABCBDAB";
-string y = "BDCABA";
-int matrix[8][7];
-int direction[8][7];
+string x = "10010101";
+string y = "010110110";
+int length_x = x.length() + 1;
+int length_y = y.length() + 1;
+int **matrix = new int *[length_x];
+int **direction = new int *[length_x];
 
-void LCS()
+void init()
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < length_x; i++)
+    {
+        matrix[i] = new int[length_y];
+        direction[i] = new int[length_y];
+    }
+    for (int i = 0; i < length_x; i++)
     {
         matrix[i][0] = 0;
     }
-    for (int j = 0; j < 7; j++)
+    for (int j = 0; j < length_y; j++)
     {
         matrix[0][j] = 0;
     }
-    for (int i = 1; i < 8; i++)
+}
+
+void LCS()
+{
+    for (int i = 1; i < length_x; i++)
     {
-        for (int j = 1; j < 7; j++)
+        for (int j = 1; j < length_y; j++)
         {
             if (x[i - 1] == y[j - 1])
             {
@@ -68,17 +80,9 @@ void print(int i, int j)
 
 void LCS2()
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 1; i < length_x; i++)
     {
-        matrix[i][0] = 0;
-    }
-    for (int j = 0; j < 7; j++)
-    {
-        matrix[0][j] = 0;
-    }
-    for (int i = 1; i < 8; i++)
-    {
-        for (int j = 1; j < 7; j++)
+        for (int j = 1; j < length_y; j++)
         {
             if (x[i - 1] == y[j - 1])
             {
@@ -119,10 +123,33 @@ void print2(int i, int j)
 
 int main()
 {
-    LCS();
-    print(7, 6);
-    cout << endl;
+    init();
+
+    // LCS();
+    // print(length_x - 1, length_y - 1);
+    // cout << endl;
+
     LCS2();
-    print2(7, 6);
+    print2(length_x - 1, length_y - 1);
+    cout << endl;
+
+    cout << "Table: " << endl;
+    cout << setw(6) << " ";
+    for (int j = 0; j < length_x; j++)
+        cout << setw(3) << y[j];
+    cout << endl;
+    for (int i = 0; i < length_x; i++)
+    {
+        if (i == 0)
+            cout << setw(3) << " ";
+        else
+            cout << setw(3) << x[i - 1];
+        for (int j = 0; j < length_y; j++)
+        {
+            cout << setw(3) << matrix[i][j];
+        }
+        cout << endl;
+    }
+
     return 0;
 }
