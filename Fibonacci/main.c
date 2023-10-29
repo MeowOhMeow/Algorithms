@@ -1,23 +1,39 @@
 #include <stdlib.h>
+#include <stdio.h>
+
+int *solved;
+int size = 20;
+int solved_size = 2;
+
+int fibo(int n)
+{
+    if (n < 0)
+    {
+        return -1;
+    }
+    else if (n < solved_size)
+    {
+        return solved[n];
+    }
+    else
+    {
+        int result = fibo(n - 1) + fibo(n - 2);
+        solved = (int *)realloc(solved, sizeof(int) * (solved_size + 1));
+        solved[solved_size] = result;
+        solved_size++;
+        return result;
+    }
+}
 
 int main(int argc, char *argv[])
 {
-    int size = 10;
-    int *solved = (int *)malloc(sizeof(int) * size);
-    for (int i = 0; i < size; i++)
+    solved = (int *)malloc(sizeof(int) * size);
+    solved[0] = 0;
+    solved[1] = 1;
+
+    for (int i = 0; i < 10; i++)
     {
-        if (i == 0)
-        {
-            solved[i] = 0;
-        }
-        else if (i == 1)
-        {
-            solved[i] = 1;
-        }
-        else
-        {
-            solved[i] = solved[i - 1] + solved[i - 2];
-        }
+        printf("%d\n", fibo(i));
     }
 
     return 0;
