@@ -17,11 +17,13 @@ int fibo(int n)
     }
     else
     {
-        int result = fibo(n - 1) + fibo(n - 2);
         solved = (int *)realloc(solved, sizeof(int) * (solved_size + 1));
-        solved[solved_size] = result;
-        solved_size++;
-        return result;
+        for (int i = solved_size; i <= n; i++)
+        {
+            solved[i] = solved[i - 1] + solved[i - 2];
+        }
+        solved_size = n + 1;
+        return solved[n];
     }
 }
 
