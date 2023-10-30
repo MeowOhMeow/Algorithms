@@ -74,7 +74,13 @@ void solve_max_subsets()
     best_route.resize(best_score);
 }
 
-// this function is called recursively to extract the best subsets
+/*
+    this function is called recursively to extract the best subsets
+
+    in the worst case this function will be called n times, where n is the number of points
+    from the given domain, the worst case is 10000
+    the worst case: [(20000, 0), (19999, 1), (19998, 2), ... , (10001, 9999)]
+*/
 void extract_best_subsets(int lower, int upper)
 {
     if (lower >= upper)
