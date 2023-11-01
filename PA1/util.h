@@ -5,7 +5,7 @@
 #include <string>
 
 #include "debug.h"
-#include "solution.h"   // for global variables
+#include "solution.h"
 #include "mergeSort.h"
 
 using namespace std;

@@ -1,7 +1,7 @@
 #include "util.h"
 
 // simply get the program name, I use both '/' and '\' to support both Windows and Linux
-string get_program_name(char *argv[])
+string _get_program_name(char *argv[])
 {
     string program_name = argv[0];
     size_t last_slash = program_name.find_last_of('\\');
@@ -18,7 +18,7 @@ string get_program_name(char *argv[])
 }
 
 // what you see is what you get
-void load(char *filename)
+void _load(char *filename)
 {
     ifstream fin;
     fin.open(filename);
@@ -45,7 +45,7 @@ void load(char *filename)
 }
 
 // initializing the max_subsets array
-void init_max_subsets()
+void _init_max_subsets()
 {
     max_subsets = new int *[num_of_points];
     for (int i = 0; i < num_of_points; i++)
@@ -65,9 +65,9 @@ void init_max_subsets()
 */
 void init(int argc, char *argv[])
 {
-    Assert(argc == 3, "Usage: %s <input file> <output file>", get_program_name(argv).c_str());
-    load(argv[1]);
-    init_max_subsets();
+    Assert(argc == 3, "Usage: %s <input file> <output file>", _get_program_name(argv).c_str());
+    _load(argv[1]);
+    _init_max_subsets();
 }
 
 // save the result
