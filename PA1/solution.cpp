@@ -12,49 +12,6 @@ int best_score;
 // global variables for solution.cpp only
 int idx = 0;
 
-// this function is the most frequently called function in solve_max_subset()
-inline bool _is_overlapping(int lower, int cord_point)
-{
-    // this is very simple logic, but is_overlapping() is more readable
-    return lower == cord_point;
-}
-
-// this function is called only when is_overlapping() is false
-inline bool _is_inside(int lower, int cord_point, int upper)
-{
-    // implenting the logic: lower < cord_point < upper
-    // cord_point < upper is false more often than lower < cord_point, considering the smaller delta
-    return cord_point < upper && lower < cord_point;
-}
-
-// this function is called only when is_inside() is true
-inline bool _is_including_cord_larger(int lower, int cord_point, int upper)
-{
-    return max_subsets[lower][cord_point - 1] + max_subsets[cord_point + 1][upper - 1] + 1 > max_subsets[lower][upper - 1];
-}
-
-// i can't think of a better name for this function
-inline void _solve_max_subset(int lower, int upper)
-{
-    int cord_point = pair_map[upper];
-    // case 1: overlapping
-    if (_is_overlapping(lower, cord_point))
-    {
-        max_subsets[lower][upper] = max_subsets[lower][upper - 1] + 1;
-    }
-    // case 2: inside. if the max subset including the cord is larger than the max subset excluding the cord
-    // if the first condition is not satisfied, the second condition will not be checked
-    else if (_is_inside(lower, cord_point, upper) && _is_including_cord_larger(lower, cord_point, upper))
-    {
-        max_subsets[lower][upper] = max_subsets[lower][cord_point - 1] + max_subsets[cord_point + 1][upper - 1] + 1;
-    }
-    // case 3: otherwise(outside and inside but failing the second condition)
-    else
-    {
-        max_subsets[lower][upper] = max_subsets[lower][upper - 1];
-    }
-}
-
 // solving!!!!!!!
 void _solve_max_subsets()
 {
@@ -64,7 +21,26 @@ void _solve_max_subsets()
         int upper = del;
         while (upper < num_of_points)
         {
-            _solve_max_subset(lower, upper);
+            int cord_point = pair_map[upper];
+
+            // case 1: overlapping
+            if (lower == cord_point) // is overlapping
+            {
+                max_subsets[lower][upper] = max_subsets[lower][upper - 1] + 1;
+            }
+            // case 2: inside. if the max subset including the cord is larger than the max subset excluding the cord
+            // if the first condition is not satisfied, the second condition will not be checked
+            else if ((cord_point < upper && lower < cord_point)                                                                          // is inside. cord_point < upper is false more often than lower < cord_point, considering the smaller delta
+                     && max_subsets[lower][cord_point - 1] + max_subsets[cord_point + 1][upper - 1] + 1 > max_subsets[lower][upper - 1]) // is including cord larger
+            {
+                max_subsets[lower][upper] = max_subsets[lower][cord_point - 1] + max_subsets[cord_point + 1][upper - 1] + 1;
+            }
+            // case 3: otherwise(outside and inside but failing the second condition)
+            else
+            {
+                max_subsets[lower][upper] = max_subsets[lower][upper - 1];
+            }
+
             lower++;
             upper++;
         }
@@ -87,15 +63,17 @@ void _extract_best_subsets(int lower, int upper)
     {
         return;
     }
+
     int cord_point = pair_map[upper];
     // case 1: overlapping.
-    if (_is_overlapping(lower, cord_point))
+    if (lower == cord_point) // is overlapping
     {
         best_route[idx++] = Pair(cord_point, upper);
         _extract_best_subsets(lower, upper - 1);
     }
     // case 2: if the max subset including the cord is larger than the max subset excluding the cord
-    else if (_is_inside(lower, cord_point, upper) && _is_including_cord_larger(lower, cord_point, upper))
+    else if ((cord_point < upper && lower < cord_point)                                                                          // is inside. cord_point < upper is false more often than lower < cord_point, considering the smaller delta
+             && max_subsets[lower][cord_point - 1] + max_subsets[cord_point + 1][upper - 1] + 1 > max_subsets[lower][upper - 1]) // is including cord larger
     {
         // is_including_cord_larger() is the only function that uses the max_subsets array...
         best_route[idx++] = Pair(cord_point, upper);
