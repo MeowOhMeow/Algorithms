@@ -1,9 +1,7 @@
 #include "solution.h"
 
-using namespace std;
-
 // global variables
-unordered_map<int, int> pair_map;
+int *pair_map;
 vector<Pair> best_route;
 int **max_subsets;
 int num_of_points;

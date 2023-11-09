@@ -27,7 +27,8 @@ void _load(char *filename)
     string line; // to hold stuff
 
     getline(fin, line);
-    num_of_points = stoi(line); // number of cords
+    num_of_points = stoi(line);
+    pair_map = new int[num_of_points];
 
     while (getline(fin, line))
     {
@@ -93,4 +94,5 @@ void clean()
         delete[] max_subsets[i];
     }
     delete[] max_subsets;
+    delete[] pair_map;
 }
