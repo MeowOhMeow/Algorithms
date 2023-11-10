@@ -13,7 +13,7 @@ int idx = 0;
 // solving!!!!!!!
 void _solve_max_subsets()
 {
-    for (int del = 1; del < num_of_points; del++)
+    for (int del = 1; del < num_of_points; ++del)
     {
         int lower = 0;
         int upper = del;
@@ -39,8 +39,8 @@ void _solve_max_subsets()
                 max_subsets[lower][upper] = max_subsets[lower][upper - 1];
             }
 
-            lower++;
-            upper++;
+            ++lower;
+            ++upper;
         }
     }
 
