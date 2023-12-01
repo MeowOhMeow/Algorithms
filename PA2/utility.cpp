@@ -3,6 +3,8 @@
 using namespace std;
 
 Graph graph;
+string input_file;
+string output_file;
 
 vector<string> split(string str, char delim)
 {
@@ -24,10 +26,10 @@ vector<string> split(string str, char delim)
     return res;
 }
 
-void _load(char *filename)
+void _load()
 {
-    ifstream fin(filename);
-    Perror(fin, "Failed to open file %s", filename);
+    ifstream fin(input_file);
+    Perror(fin, "Failed to open file %s", input_file.c_str());
     string line;
     // grid col row
     getline(fin, line);
@@ -63,9 +65,10 @@ void _load(char *filename)
 
 void init(int argc, char *argv[])
 {
-    Assert(argc == 2, "Usage: %s <filename>", argv[0]);
-    char *filename = argv[1];
-    _load(filename);
+    Assert(argc == 3, "Usage: %s <input file> <output file>", argv[0]);
+    input_file = argv[1];
+    output_file = argv[2];
+    _load();
 }
 
 void sovle()
@@ -73,12 +76,12 @@ void sovle()
     graph.solve();
 }
 
-void print_path()
+void save_path()
 {
-    graph.print_path();
+    graph.save_path(output_file);
 }
 
 void clear()
 {
-    graph.reset();
+    graph.del();
 }

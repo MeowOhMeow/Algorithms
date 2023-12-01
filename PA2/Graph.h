@@ -1,9 +1,13 @@
 #ifndef GRAPH_H
 
+#include <string>
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <math.h>
+#include <fstream>
+
+#include "debug.h"
 
 #define NIL -1
 
@@ -27,18 +31,17 @@ private:
     float get_distance(int demand);
     void load_demand();
     void choose_path(int i, int s, int v);
-    void print_path(int s, int v);
     void dijkstra(int s);
 
 public:
     Graph() = default;
     Graph(int row, int col, int capacity);
-    void reset();
+    void del();
 
     void init_single_source(int s);
 
     void solve();
-    void print_path();
+    void save_path(string output_file);
 };
 
 extern int num_nets;

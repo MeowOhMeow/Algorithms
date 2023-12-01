@@ -22,11 +22,6 @@ Graph::Graph(int col, int row, int capacity)
             demand[i][j] = 0;
         }
     }
-    reset();
-}
-
-void Graph::reset()
-{
     // build graph
     // horizontal
     for (int i = 0; i < row; i++)
@@ -46,6 +41,15 @@ void Graph::reset()
             adj[(i + 1) * col + j].push_back(make_pair(i * col + j, 1));
         }
     }
+}
+
+void Graph::del()
+{
+    for (int i = 0; i < col; i++)
+    {
+        delete[] demand[i];
+    }
+    delete[] demand;
 }
 
 void Graph::init_single_source(int s)
@@ -98,7 +102,6 @@ void Graph::choose_path(int i, int s, int v)
 
 float Graph::get_distance(int demand)
 {
-    cout << demand << " " << pow(2, demand / capacity) << endl;
     return pow(2, demand / capacity);
 }
 
@@ -124,15 +127,20 @@ void Graph::solve()
     }
 }
 
-void Graph::print_path()
+void Graph::save_path(string output_file)
 {
+    ofstream fout(output_file);
+    Perror(fout, "Failed to open file %s", output_file.c_str());
     for (int i = 0; i < num_nets; i++)
     {
-        cout << "Net " << i << ": ";
-        for (int j = 0; j < paths[i].size(); j++)
+        fout << i << " " << paths[i].size() - 1 << endl;
+        for (int j = 0; j < paths[i].size() - 1; j++)
         {
-            cout << "(" << paths[i][j] / col << " " << paths[i][j] % col << ") ";
+            int x1 = paths[i][j] / col;
+            int y1 = paths[i][j] % col;
+            int x2 = paths[i][j + 1] / col;
+            int y2 = paths[i][j + 1] % col;
+            fout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
         }
-        cout << endl;
     }
 }

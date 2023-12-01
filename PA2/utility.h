@@ -10,7 +10,7 @@
 
 void init(int argc, char *argv[]);
 void sovle();
-void print_path();
+void save_path();
 void clear();
 
 #endif // UTILITY_H
