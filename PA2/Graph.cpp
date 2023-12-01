@@ -94,7 +94,19 @@ void Graph::choose_path(int i, int s, int v)
     paths[i].push_back(pos);
     while (pos != s)
     {
-        demand[pos / col][pos % col]++;
+        int x = pos / col;
+        int y = pos % col;
+        demand[x][y]++;
+        float dis = get_distance(demand[x][y]);
+        // update adj
+        for (int j = 0; j < adj[pos].size(); j++)
+        {
+            if (adj[pos][j].first == parent[pos])
+            {
+                adj[pos][j].second = dis;
+                break;
+            }
+        }
         pos = parent[pos];
         paths[i].push_back(pos);
     }
@@ -105,25 +117,12 @@ float Graph::get_distance(int demand)
     return pow(2, demand / capacity);
 }
 
-void Graph::load_demand()
-{
-    // reset adj
-    for (int i = 0; i < vertices; i++)
-    {
-        for (int j = 0; j < adj[i].size(); j++)
-        {
-            adj[i][j].second = get_distance(demand[adj[i][j].first / col][adj[i][j].first % col]);
-        }
-    }
-}
-
 void Graph::solve()
 {
     for (int i = 0; i < num_nets; i++)
     {
         dijkstra(i);
         choose_path(i, nets[i].first.first * col + nets[i].first.second, nets[i].second.first * col + nets[i].second.second);
-        load_demand();
     }
 }
 

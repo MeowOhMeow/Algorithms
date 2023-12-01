@@ -2,16 +2,27 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def count_segments(nets, theshold):
-    count = 0
-    for net in nets:
-        for i in range(len(net) - 1):
-            if (
-                abs(net[i][0] - net[i + 1][0]) + abs(net[i][1] - net[i + 1][1])
-                > theshold
-            ):
-                count += 1
-    return count
+def detect_overlaps(file_path, num_nets):
+    lines = dict()
+    with open(file_path, "r") as file:
+        for line in file:
+            line = line.strip().split()
+            if len(line) == 2:
+                pass
+            else:
+                x1, y1, x2, y2 = map(int, line)
+                if (x1, y1, x2, y2) in lines:
+                    lines[(x1, y1, x2, y2)] += 1
+                elif (x2, y2, x1, y1) in lines:
+                    lines[(x2, y2, x1, y1)] += 1
+                else:
+                    lines[(x1, y1, x2, y2)] = 1
+    # iterate through the lines summing the number of times each line is used
+    s = 0
+    for line in lines:
+        if lines[line] > num_nets:
+            s += 1
+    return s
 
 
 def read_file(file_path):
@@ -38,11 +49,11 @@ def read_file(file_path):
     return nets
 
 
+file_name = "out/60x60.out"
 # Coordinates for each net
-nets = read_file("out/60x60.out")
+nets = read_file(file_name)
+print(detect_overlaps(file_name, 45))
 
-
-print(f"Overflows: {count_segments(nets, 3)}")
 
 # length = len(nets)
 # # Plotting each net with a small x-offset

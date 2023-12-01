@@ -29,7 +29,6 @@ private:
     vector<vector<int>> paths;
 
     float get_distance(int demand);
-    void load_demand();
     void choose_path(int i, int s, int v);
     void dijkstra(int s);
 
