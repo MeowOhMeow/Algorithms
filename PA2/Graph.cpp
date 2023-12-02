@@ -56,7 +56,7 @@ void Graph::init_single_source(int s)
 {
     for (int i = 0; i < vertices; i++)
     {
-        d[i] = INT_MAX;
+        d[i] = numeric_limits<float>::max();
         parent[i] = NIL;
     }
     d[s] = 0;
@@ -140,7 +140,6 @@ void Graph::solve()
 void Graph::save_path(string output_file)
 {
     ofstream fout(output_file);
-    Perror(fout, "Failed to open file %s", output_file.c_str());
     for (int i = 0; i < num_nets; i++)
     {
         fout << i << " " << paths[i].size() - 1 << endl;
