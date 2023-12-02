@@ -31,6 +31,7 @@ private:
     float get_distance(int demand);
     void choose_path(int i, int s, int v);
     void dijkstra(int s);
+    void update_adj(int pos);
 
 public:
     Graph() = default;

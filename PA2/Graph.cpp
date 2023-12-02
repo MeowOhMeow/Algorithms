@@ -88,33 +88,44 @@ void Graph::dijkstra(int s)
     }
 }
 
+void Graph::update_adj(int pos)
+{
+    int x = pos / col;
+    int y = pos % col;
+    demand[x][y]++;
+    float dis = pow(2, demand[x][y] / capacity);
+    // update adj
+    // from pos to parent[pos]
+    for (int j = 0; j < adj[pos].size(); j++)
+    {
+        if (adj[pos][j].first == parent[pos])
+        {
+            adj[pos][j].second = dis;
+            break;
+        }
+    }
+    // from parent[pos] to pos
+    for (int j = 0; j < adj[parent[pos]].size(); j++)
+    {
+        if (adj[parent[pos]][j].first == pos)
+        {
+            adj[parent[pos]][j].second = dis;
+            break;
+        }
+    }
+}
+
 void Graph::choose_path(int i, int s, int v)
 {
     int pos = v;
     paths[i].push_back(pos);
+    update_adj(pos);
     while (pos != s)
     {
-        int x = pos / col;
-        int y = pos % col;
-        demand[x][y]++;
-        float dis = get_distance(demand[x][y]);
-        // update adj
-        for (int j = 0; j < adj[pos].size(); j++)
-        {
-            if (adj[pos][j].first == parent[pos])
-            {
-                adj[pos][j].second = dis;
-                break;
-            }
-        }
+        update_adj(pos);
         pos = parent[pos];
         paths[i].push_back(pos);
     }
-}
-
-float Graph::get_distance(int demand)
-{
-    return pow(2, demand / capacity);
 }
 
 void Graph::solve()

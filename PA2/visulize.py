@@ -21,6 +21,7 @@ def detect_overlaps(file_path, num_nets):
     s = 0
     for line in lines:
         if lines[line] > num_nets:
+            print(line, lines[line])
             s += 1
     return s
 
