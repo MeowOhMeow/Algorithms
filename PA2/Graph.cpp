@@ -93,7 +93,7 @@ void Graph::update_adj(int pos)
     int x = pos / col;
     int y = pos % col;
     demand[x][y]++;
-    float dis = pow(2, demand[x][y] / capacity);
+    float dis = pow(2, demand[x][y] / capacity * 2);
     // update adj's weight
     // from pos to parent[pos]
     for (int i = 0; i < adj[pos].size(); i++)
