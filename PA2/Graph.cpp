@@ -77,7 +77,7 @@ void Graph::update_adj(int pos)
     {
         if (adj[pos][i].first == parent[pos])
         {
-            adj[pos][i].second += capacity;
+            adj[pos][i].second += 1;
             break;
         }
     }
@@ -85,7 +85,7 @@ void Graph::update_adj(int pos)
     {
         if (adj[parent[pos]][i].first == pos)
         {
-            adj[parent[pos]][i].second += capacity;
+            adj[parent[pos]][i].second += 1;
             break;
         }
     }
