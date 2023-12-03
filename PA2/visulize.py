@@ -56,22 +56,22 @@ nets = read_file(file_name)
 print(detect_overlaps(file_name, 3))
 
 
-# length = len(nets)
-# # Plotting each net with a small x-offset
-# for i, net in enumerate(nets):
-#     x, y = zip(*net)
-#     x_offset = np.ones_like(x) * 0.3 / length * i
-#     y_offset = np.ones_like(y) * 0.3 / length * i
-#     plt.plot(x + x_offset, y + y_offset, "o-", label="Net {}".format(i + 1))
+length = len(nets)
+# Plotting each net with a small x-offset
+for i, net in enumerate(nets):
+    x, y = zip(*net)
+    x_offset = np.ones_like(x) * 0.3 / length * i
+    y_offset = np.ones_like(y) * 0.3 / length * i
+    plt.plot(x + x_offset, y + y_offset, "o-", label="Net {}".format(i + 1))
 
-# # Set labels and title
-# plt.xlabel("X-axis")
-# plt.ylabel("Y-axis")
-# plt.title("Lines Connecting Points in Nets with Offset")
+# Set labels and title
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Lines Connecting Points in Nets with Offset")
 
-# # Display legend
-# plt.legend()
+# Display legend
+plt.legend()
 
-# # Display the plot
-# plt.grid(True)
-# plt.show()
+# Display the plot
+plt.grid(True)
+plt.show()

@@ -39,7 +39,7 @@ void Graph::init_single_source(int s)
 {
     for (int i = 0; i < vertices; i++)
     {
-        d[i] = numeric_limits<float>::max();
+        d[i] = INT_MAX;
         parent[i] = NIL;
     }
     d[s] = 0;
@@ -59,7 +59,7 @@ void Graph::dijkstra(int s)
         for (int i = 0; i < adj[u].size(); i++)
         {
             int v = adj[u][i].first;
-            float w = adj[u][i].second;
+            int w = adj[u][i].second;
 
             if (d[v] > d[u] + w)
             {
@@ -119,12 +119,20 @@ void Graph::save_path(string output_file)
     for (int i = 0; i < num_nets; i++)
     {
         fout << i << " " << paths[i].size() - 1 << endl;
-        for (int j = 0; j < paths[i].size() - 1; j++)
+        // for (int j = 0; j < paths[i].size() - 1; j++)
+        // {
+        //     int x1 = paths[i][j] / col;
+        //     int y1 = paths[i][j] % col;
+        //     int x2 = paths[i][j + 1] / col;
+        //     int y2 = paths[i][j + 1] % col;
+        //     fout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
+        // }
+        for (int j = paths[i].size() - 1; j > 0; j--)
         {
             int x1 = paths[i][j] / col;
             int y1 = paths[i][j] % col;
-            int x2 = paths[i][j + 1] / col;
-            int y2 = paths[i][j + 1] % col;
+            int x2 = paths[i][j - 1] / col;
+            int y2 = paths[i][j - 1] % col;
             fout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
         }
     }

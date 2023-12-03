@@ -17,12 +17,12 @@ class Graph
 {
 private:
     int row, col;
-    float capacity;
+    int capacity;
     int vertices;
     // (adjacent, weight)
-    vector<vector<pair<int, float>>> adj;
+    vector<vector<pair<int, int>>> adj;
     vector<int> parent;
-    vector<float> d;
+    vector<int> d;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> Q;
     // paths
     vector<vector<int>> paths;
