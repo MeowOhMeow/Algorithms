@@ -50,10 +50,10 @@ def read_file(file_path):
     return nets
 
 
-file_name = "out/60x60.out"
+file_name = "out/10x10.out"
 # Coordinates for each net
 nets = read_file(file_name)
-print(detect_overlaps(file_name, 45))
+print(detect_overlaps(file_name, 3))
 
 
 # length = len(nets)

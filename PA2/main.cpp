@@ -9,7 +9,6 @@ int main(int argc, char *argv[])
     init(argc, argv);
     sovle();
     save_path();
-    clear();
     auto end = std::chrono::steady_clock::now();
     std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
     return 0;

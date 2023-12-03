@@ -11,6 +11,5 @@
 void init(int argc, char *argv[]);
 void sovle();
 void save_path();
-void clear();
 
 #endif // UTILITY_H

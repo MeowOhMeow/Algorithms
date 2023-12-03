@@ -80,8 +80,3 @@ void save_path()
 {
     graph.save_path(output_file);
 }
-
-void clear()
-{
-    graph.del();
-}

@@ -13,15 +13,7 @@ Graph::Graph(int col, int row, int capacity)
     parent.resize(vertices);
     d.resize(vertices);
     paths.resize(num_nets);
-    demand = new int *[col];
-    for (int i = 0; i < col; i++)
-    {
-        demand[i] = new int[row];
-        for (int j = 0; j < row; j++)
-        {
-            demand[i][j] = 0;
-        }
-    }
+
     // build graph
     // horizontal
     for (int i = 0; i < row; i++)
@@ -41,15 +33,6 @@ Graph::Graph(int col, int row, int capacity)
             adj[(i + 1) * col + j].push_back(make_pair(i * col + j, 1));
         }
     }
-}
-
-void Graph::del()
-{
-    for (int i = 0; i < col; i++)
-    {
-        delete[] demand[i];
-    }
-    delete[] demand;
 }
 
 void Graph::init_single_source(int s)
@@ -90,26 +73,19 @@ void Graph::dijkstra(int s)
 
 void Graph::update_adj(int pos)
 {
-    int x = pos / col;
-    int y = pos % col;
-    demand[x][y]++;
-    float dis = pow(2, demand[x][y] / capacity * 2);
-    // update adj's weight
-    // from pos to parent[pos]
     for (int i = 0; i < adj[pos].size(); i++)
     {
         if (adj[pos][i].first == parent[pos])
         {
-            adj[pos][i].second = dis;
+            adj[pos][i].second += capacity;
             break;
         }
     }
-    // from parent[pos] to pos
     for (int i = 0; i < adj[parent[pos]].size(); i++)
     {
         if (adj[parent[pos]][i].first == pos)
         {
-            adj[parent[pos]][i].second = dis;
+            adj[parent[pos]][i].second += capacity;
             break;
         }
     }

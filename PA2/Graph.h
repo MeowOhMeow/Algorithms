@@ -19,7 +19,6 @@ private:
     int row, col;
     float capacity;
     int vertices;
-    int **demand;
     // (adjacent, weight)
     vector<vector<pair<int, float>>> adj;
     vector<int> parent;
@@ -35,7 +34,6 @@ private:
 public:
     Graph() = default;
     Graph(int row, int col, int capacity);
-    void del();
 
     void init_single_source(int s);
 
