@@ -6,10 +6,13 @@
 #include <queue>
 #include <math.h>
 #include <fstream>
+#include <algorithm>
 
 #include "debug.h"
 
 #define NIL -1
+#define INF numeric_limits<float>::max() / 2
+#define MAX_ITER 1
 
 using namespace std;
 
@@ -27,10 +30,15 @@ private:
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> Q;
     // paths
     vector<vector<int>> paths;
+    vector<pair<int, int>> overflow_lines;
+    vector<int> overflow_paths;
 
     void choose_path(int i, int s, int v);
     void dijkstra(int s);
     void update_adj(int pos);
+    int find_overflow_lines();
+    void find_overflow_paths();
+    void update_paths(); 
 
 public:
     Graph() = default;
