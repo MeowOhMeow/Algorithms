@@ -13,7 +13,7 @@ Graph::Graph(int col, int row, int capacity)
     parent.resize(vertices);
     d.resize(vertices);
     paths.resize(num_nets);
-    alpha = pow(2, (10.0 / capacity));
+    alpha = pow(2, (20.0 / capacity));
 
     // build graph
     // horizontal
