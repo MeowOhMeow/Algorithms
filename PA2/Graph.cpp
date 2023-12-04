@@ -13,6 +13,7 @@ Graph::Graph(int col, int row, int capacity)
     parent.resize(vertices);
     d.resize(vertices);
     paths.resize(num_nets);
+    alpha = pow(2, (10.0 / capacity));
 
     // build graph
     // horizontal
@@ -39,7 +40,7 @@ void Graph::init_single_source(int s)
 {
     for (int i = 0; i < vertices; i++)
     {
-        d[i] = INT_MAX;
+        d[i] = numeric_limits<float>::max() / 2;
         parent[i] = NIL;
     }
     d[s] = 0;
@@ -59,7 +60,7 @@ void Graph::dijkstra(int s)
         for (int i = 0; i < adj[u].size(); i++)
         {
             int v = adj[u][i].first;
-            int w = adj[u][i].second;
+            float w = adj[u][i].second;
 
             if (d[v] > d[u] + w)
             {
@@ -77,7 +78,7 @@ void Graph::update_adj(int pos)
     {
         if (adj[pos][i].first == parent[pos])
         {
-            adj[pos][i].second += 1;
+            adj[pos][i].second *= alpha;
             break;
         }
     }
@@ -85,7 +86,7 @@ void Graph::update_adj(int pos)
     {
         if (adj[parent[pos]][i].first == pos)
         {
-            adj[parent[pos]][i].second += 1;
+            adj[parent[pos]][i].second *= alpha;
             break;
         }
     }

@@ -19,10 +19,11 @@ private:
     int row, col;
     int capacity;
     int vertices;
+    float alpha;
     // (adjacent, weight)
-    vector<vector<pair<int, int>>> adj;
+    vector<vector<pair<int, float>>> adj;
     vector<int> parent;
-    vector<int> d;
+    vector<float> d;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> Q;
     // paths
     vector<vector<int>> paths;
