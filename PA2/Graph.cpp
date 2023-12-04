@@ -15,15 +15,15 @@ Graph::Graph(int col, int row, int capacity)
     paths.resize(num_nets);
 
     // maintain 0.2 times of capacity to avoid bit overflow
-    float reserved = 0.2;
-    float ratio = 1.4;
-    if (log(numeric_limits<float>::max() / log(ratio)) < capacity / (1 - reserved))
+    alpha = log(100) / log(capacity);
+    if (alpha < 1.1)
     {
-        alpha = log(numeric_limits<float>::max() / log(capacity / (1 - reserved)));
-    }
-    else
-    {
-        alpha = ratio;
+        alpha = 1.1;
+        if (log(numeric_limits<float>::max() / 2) / log(capacity) < 1.1)
+        {
+            cout << "capacity is too large!!!!!!!!!!!!" << endl;
+            exit(1);
+        }
     }
 
     // build graph
