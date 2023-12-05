@@ -26,10 +26,6 @@ protected:
     vector<int> parent;
     vector<float> d;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> Q;
-    // paths
-    vector<vector<int>> paths;
-    vector<pair<int, int>> overflow_lines;
-    vector<int> overflow_paths;
 
     void init_single_source(int s);
     void dijkstra(int s);

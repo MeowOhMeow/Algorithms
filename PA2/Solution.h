@@ -22,6 +22,11 @@ private:
     int capacity;
     float alpha;
 
+    // paths
+    vector<vector<int>> paths;
+    vector<pair<int, int>> overflow_lines;
+    vector<int> overflow_paths;
+
     void choose_path(int i, int s, int v);
     void update_adj(int pos);
     int find_overflow_lines();

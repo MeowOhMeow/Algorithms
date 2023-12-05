@@ -154,9 +154,11 @@ void Graph::update_paths()
 
     for (int i = 0; i < overflow_paths.size(); i++)
     {
-        int pos = overflow_paths[i];
-        dijkstra(pos);
-        choose_path(pos, nets[pos].first.first * col + nets[pos].first.second, nets[pos].second.first * col + nets[pos].second.second);
+        int idx = overflow_paths[i];
+        int start_pos = nets[idx].first.first * col + nets[idx].first.second;
+        int end_pos = nets[idx].second.first * col + nets[idx].second.second;
+        dijkstra(start_pos);
+        choose_path(idx, start_pos, end_pos);
     }
 }
 
