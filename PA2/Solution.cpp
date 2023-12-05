@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Solution.h"
 
 int num_nets;
 vector<pair<pair<int, int>, pair<int, int>>> nets;
@@ -43,42 +43,6 @@ Graph::Graph(int col, int row, int capacity)
         {
             adj[i * col + j].push_back(make_pair((i + 1) * col + j, 1));
             adj[(i + 1) * col + j].push_back(make_pair(i * col + j, 1));
-        }
-    }
-}
-
-void Graph::init_single_source(int s)
-{
-    for (int i = 0; i < vertices; i++)
-    {
-        d[i] = INF;
-        parent[i] = NIL;
-    }
-    d[s] = 0;
-}
-
-void Graph::dijkstra(int s)
-{
-    int pos = nets[s].first.first * col + nets[s].first.second;
-    init_single_source(pos);
-    Q.push(make_pair(d[pos], pos));
-
-    while (!Q.empty())
-    {
-        int u = Q.top().second;
-        Q.pop();
-
-        for (int i = 0; i < adj[u].size(); i++)
-        {
-            int v = adj[u][i].first;
-            float w = adj[u][i].second;
-
-            if (d[v] > d[u] + w)
-            {
-                d[v] = d[u] + w;
-                parent[v] = u;
-                Q.push(make_pair(d[v], v));
-            }
         }
     }
 }
@@ -200,8 +164,10 @@ void Graph::solve()
 {
     for (int i = 0; i < num_nets; i++)
     {
-        dijkstra(i);
-        choose_path(i, nets[i].first.first * col + nets[i].first.second, nets[i].second.first * col + nets[i].second.second);
+        int start_pos = nets[i].first.first * col + nets[i].first.second;
+        int end_pos = nets[i].second.first * col + nets[i].second.second;
+        dijkstra(start_pos);
+        choose_path(i, start_pos, end_pos);
     }
 
     // int count = 0;

@@ -1,4 +1,5 @@
-#ifndef GRAPH_H
+#ifndef DIJKSTRA_H
+#define DIJKSTRA_H
 
 #include <string>
 #include <iostream>
@@ -12,17 +13,14 @@
 
 #define NIL -1
 #define INF numeric_limits<float>::max() / 2
-#define MAX_ITER 1
 
 using namespace std;
 
-class Graph
+class Dijkstra
 {
-private:
-    int row, col;
-    int capacity;
+protected:
     int vertices;
-    float alpha;
+
     // (adjacent, weight)
     vector<vector<pair<int, float>>> adj;
     vector<int> parent;
@@ -33,24 +31,11 @@ private:
     vector<pair<int, int>> overflow_lines;
     vector<int> overflow_paths;
 
-    void choose_path(int i, int s, int v);
+    void init_single_source(int s);
     void dijkstra(int s);
-    void update_adj(int pos);
-    int find_overflow_lines();
-    void find_overflow_paths();
-    void update_paths(); 
 
 public:
-    Graph() = default;
-    Graph(int row, int col, int capacity);
-
-    void init_single_source(int s);
-
-    void solve();
-    void save_path(string output_file);
+    Dijkstra() = default;
 };
 
-extern int num_nets;
-extern vector<pair<pair<int, int>, pair<int, int>>> nets;
-
-#endif // GRAPH_H
+#endif // DIJKSTRA_H
