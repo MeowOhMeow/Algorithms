@@ -14,17 +14,7 @@ Graph::Graph(int col, int row, int capacity)
     d.resize(vertices);
     paths.resize(num_nets);
 
-    // maintain 0.2 times of capacity to avoid bit overflow
-    alpha = log(100) / log(capacity);
-    if (alpha < 1.1)
-    {
-        alpha = 1.1;
-        if (log(numeric_limits<float>::max() / 2) / log(capacity) < 1.1)
-        {
-            cout << "capacity is too large!!!!!!!!!!!!" << endl;
-            exit(1);
-        }
-    }
+    alpha = pow(1e6, 1.0 / capacity);
 
     // build graph
     // horizontal
