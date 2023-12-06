@@ -1,4 +1,4 @@
-#include "Solution.h"
+#include "solution.h"
 
 int num_nets;
 vector<pair<pair<int, int>, pair<int, int>>> nets;

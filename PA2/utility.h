@@ -2,7 +2,7 @@
 #define UTILITY_H
 
 #include "debug.h"
-#include "Solution.h"
+#include "solution.h"
 
 #include <string>
 #include <fstream>
