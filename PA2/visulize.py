@@ -50,28 +50,28 @@ def read_file(file_path):
     return nets
 
 
-file_name = "out/5x5.out"
+file_name = "out/60x60.out"
 # Coordinates for each net
 nets = read_file(file_name)
-print(detect_overlaps(file_name, 3))
+print(detect_overlaps(file_name, 45))
 
 
-length = len(nets)
-# Plotting each net with a small x-offset
-for i, net in enumerate(nets):
-    x, y = zip(*net)
-    x_offset = np.ones_like(x) * 0.3 / length * i
-    y_offset = np.ones_like(y) * 0.3 / length * i
-    plt.plot(x + x_offset, y + y_offset, "o-", label="Net {}".format(i + 1))
+# length = len(nets)
+# # Plotting each net with a small x-offset
+# for i, net in enumerate(nets):
+#     x, y = zip(*net)
+#     x_offset = np.ones_like(x) * 0.3 / length * i
+#     y_offset = np.ones_like(y) * 0.3 / length * i
+#     plt.plot(x + x_offset, y + y_offset, "o-", label="Net {}".format(i + 1))
 
-# Set labels and title
-plt.xlabel("X-axis")
-plt.ylabel("Y-axis")
-plt.title("Lines Connecting Points in Nets with Offset")
+# # Set labels and title
+# plt.xlabel("X-axis")
+# plt.ylabel("Y-axis")
+# plt.title("Lines Connecting Points in Nets with Offset")
 
-# Display legend
-plt.legend()
+# # Display legend
+# plt.legend()
 
-# Display the plot
-plt.grid(True)
-plt.show()
+# # Display the plot
+# plt.grid(True)
+# plt.show()
