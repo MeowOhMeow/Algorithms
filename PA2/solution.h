@@ -30,7 +30,7 @@ private:
 
 public:
     Solution() = default;
-    Solution(int rows, int cols, int capacity);
+    Solution(int cols, int rows, int capacity);
 
     void solve();
     void save_path(string output_file);

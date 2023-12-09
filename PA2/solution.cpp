@@ -3,10 +3,10 @@
 int num_nets;
 vector<pair<pair<int, int>, pair<int, int>>> nets;
 
-Solution::Solution(int rows, int cols, int capacity)
+Solution::Solution(int cols, int rows, int capacity)
 {
-    this->rows = rows;
     this->cols = cols;
+    this->rows = rows;
     this->capacity = capacity;
     vertices = rows * cols;
     adj.resize(vertices);
@@ -18,21 +18,23 @@ Solution::Solution(int rows, int cols, int capacity)
 
     // build graph
     // horizontal
-    for (int i = 0; i < rows; i++)
+    for (int x = 0; x < cols; x++)
     {
-        for (int j = 0; j < cols - 1; j++)
+        for (int y = 0; y < rows - 1; y++)
         {
-            adj[i * cols + j].push_back(make_pair(i * cols + j + 1, 1));
-            adj[i * cols + j + 1].push_back(make_pair(i * cols + j, 1));
+            int pos = x + y * cols;
+            adj[pos].push_back(make_pair(pos + cols, 1));
+            adj[pos + cols].push_back(make_pair(pos, 1));
         }
     }
     // vertical
-    for (int i = 0; i < rows - 1; i++)
+    for (int x = 0; x < cols - 1; x++)
     {
-        for (int j = 0; j < cols; j++)
+        for (int y = 0; y < rows; y++)
         {
-            adj[i * cols + j].push_back(make_pair((i + 1) * cols + j, 1));
-            adj[(i + 1) * cols + j].push_back(make_pair(i * cols + j, 1));
+            int pos = x + y * cols;
+            adj[pos].push_back(make_pair(pos + 1, 1));
+            adj[pos + 1].push_back(make_pair(pos, 1));
         }
     }
 }

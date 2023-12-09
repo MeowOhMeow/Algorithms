@@ -60,7 +60,7 @@ void _load()
         nets.push_back(make_pair(make_pair(x1, y1), make_pair(x2, y2)));
     }
 
-    solution = Solution(rows, cols, capacity);
+    solution = Solution(cols, rows, capacity);
 }
 
 void init(int argc, char *argv[])
