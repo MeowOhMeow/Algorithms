@@ -7,11 +7,10 @@
 #include <math.h>
 #include <fstream>
 #include <algorithm>
+#include <limits>
 
 #include "debug.h"
 #include "Dijkstra.h"
-
-#define MAX_ITER 1
 
 using namespace std;
 

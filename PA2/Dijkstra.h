@@ -8,13 +8,14 @@
 #include <math.h>
 #include <fstream>
 #include <algorithm>
+#include <limits>
 
 #include "debug.h"
 
+using namespace std;
+
 #define NIL -1
 #define INF numeric_limits<float>::max() / 2
-
-using namespace std;
 
 class Dijkstra
 {
