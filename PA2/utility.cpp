@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Solution graph;
+Solution solution;
 string input_file;
 string output_file;
 
@@ -60,7 +60,7 @@ void _load()
         nets.push_back(make_pair(make_pair(x1, y1), make_pair(x2, y2)));
     }
 
-    graph = Solution(rows, cols, capacity);
+    solution = Solution(rows, cols, capacity);
 }
 
 void init(int argc, char *argv[])
@@ -73,10 +73,10 @@ void init(int argc, char *argv[])
 
 void sovle()
 {
-    graph.solve();
+    solution.solve();
 }
 
 void save_path()
 {
-    graph.save_path(output_file);
+    solution.save_path(output_file);
 }
