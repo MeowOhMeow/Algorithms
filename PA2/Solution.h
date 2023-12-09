@@ -14,10 +14,10 @@
 
 using namespace std;
 
-class Graph : public Dijkstra
+class Solution : public Dijkstra
 {
 private:
-    int row, col;
+    int rows, cols;
     int capacity;
     float alpha;
 
@@ -33,8 +33,8 @@ private:
     void update_paths();
 
 public:
-    Graph() = default;
-    Graph(int row, int col, int capacity);
+    Solution() = default;
+    Solution(int rows, int cols, int capacity);
 
     void solve();
     void save_path(string output_file);

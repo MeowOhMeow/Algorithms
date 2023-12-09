@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Graph graph;
+Solution graph;
 string input_file;
 string output_file;
 
@@ -31,12 +31,12 @@ void _load()
     ifstream fin(input_file);
     Perror(fin, "Failed to open file %s", input_file.c_str());
     string line;
-    // grid col row
+    // grid cols rows
     getline(fin, line);
     vector<string> tmp = split(line, ' ');
     Assert(tmp.size() == 3, "Invalid input file");
-    int col = stoi(tmp[1]);
-    int row = stoi(tmp[2]);
+    int cols = stoi(tmp[1]);
+    int rows = stoi(tmp[2]);
     // capacity #
     getline(fin, line);
     tmp = split(line, ' ');
@@ -60,7 +60,7 @@ void _load()
         nets.push_back(make_pair(make_pair(x1, y1), make_pair(x2, y2)));
     }
 
-    graph = Graph(col, row, capacity);
+    graph = Solution(rows, cols, capacity);
 }
 
 void init(int argc, char *argv[])

@@ -3,12 +3,12 @@
 int num_nets;
 vector<pair<pair<int, int>, pair<int, int>>> nets;
 
-Graph::Graph(int col, int row, int capacity)
+Solution::Solution(int rows, int cols, int capacity)
 {
-    this->row = col;
-    this->col = row;
+    this->rows = rows;
+    this->cols = cols;
     this->capacity = capacity;
-    vertices = col * row;
+    vertices = rows * cols;
     adj.resize(vertices);
     parent.resize(vertices);
     d.resize(vertices);
@@ -18,26 +18,26 @@ Graph::Graph(int col, int row, int capacity)
 
     // build graph
     // horizontal
-    for (int i = 0; i < row; i++)
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < col - 1; j++)
+        for (int j = 0; j < cols - 1; j++)
         {
-            adj[i * col + j].push_back(make_pair(i * col + j + 1, 1));
-            adj[i * col + j + 1].push_back(make_pair(i * col + j, 1));
+            adj[i * cols + j].push_back(make_pair(i * cols + j + 1, 1));
+            adj[i * cols + j + 1].push_back(make_pair(i * cols + j, 1));
         }
     }
     // vertical
-    for (int i = 0; i < row - 1; i++)
+    for (int i = 0; i < rows - 1; i++)
     {
-        for (int j = 0; j < col; j++)
+        for (int j = 0; j < cols; j++)
         {
-            adj[i * col + j].push_back(make_pair((i + 1) * col + j, 1));
-            adj[(i + 1) * col + j].push_back(make_pair(i * col + j, 1));
+            adj[i * cols + j].push_back(make_pair((i + 1) * cols + j, 1));
+            adj[(i + 1) * cols + j].push_back(make_pair(i * cols + j, 1));
         }
     }
 }
 
-void Graph::update_adj(int pos)
+void Solution::update_adj(int pos)
 {
     for (int i = 0; i < adj[pos].size(); i++)
     {
@@ -57,7 +57,7 @@ void Graph::update_adj(int pos)
     }
 }
 
-void Graph::choose_path(int i, int s, int v)
+void Solution::choose_path(int i, int s, int v)
 {
     paths[i].clear();
     int pos = v;
@@ -70,18 +70,18 @@ void Graph::choose_path(int i, int s, int v)
     }
 }
 
-int Graph::find_overflow_lines()
+int Solution::find_overflow_lines()
 {
     overflow_lines.clear();
     float MAX_WEIGHT = pow(alpha, capacity + 1);
     for (int i = 0; i < vertices; i++)
     {
-        int x1 = i / col;
-        int y1 = i % col;
+        int x1 = i / cols;
+        int y1 = i % cols;
         for (int j = 0; j < adj[i].size(); j++)
         {
-            int x2 = adj[i][j].first / col;
-            int y2 = adj[i][j].first % col;
+            int x2 = adj[i][j].first / cols;
+            int y2 = adj[i][j].first % cols;
             if (adj[i][j].second > MAX_WEIGHT)
             {
                 overflow_lines.push_back(make_pair(i, adj[i][j].first));
@@ -93,7 +93,7 @@ int Graph::find_overflow_lines()
     return overflow_lines.size();
 }
 
-void Graph::find_overflow_paths()
+void Solution::find_overflow_paths()
 {
     overflow_paths.clear();
     for (int i = 0; i < num_nets; i++)
@@ -115,7 +115,7 @@ void Graph::find_overflow_paths()
     overflow_paths.erase(unique(overflow_paths.begin(), overflow_paths.end()), overflow_paths.end());
 }
 
-void Graph::update_paths()
+void Solution::update_paths()
 {
     // divide edges by alpha to get the weight without overflow lines
     for (int i = 0; i < overflow_paths.size(); i++)
@@ -145,19 +145,19 @@ void Graph::update_paths()
     for (int i = 0; i < overflow_paths.size(); i++)
     {
         int idx = overflow_paths[i];
-        int start_pos = nets[idx].first.first * col + nets[idx].first.second;
-        int end_pos = nets[idx].second.first * col + nets[idx].second.second;
+        int start_pos = nets[idx].first.first + nets[idx].first.second * cols;
+        int end_pos = nets[idx].second.first+ nets[idx].second.second * cols;
         dijkstra(start_pos);
         choose_path(idx, start_pos, end_pos);
     }
 }
 
-void Graph::solve()
+void Solution::solve()
 {
     for (int i = 0; i < num_nets; i++)
     {
-        int start_pos = nets[i].first.first * col + nets[i].first.second;
-        int end_pos = nets[i].second.first * col + nets[i].second.second;
+        int start_pos = nets[i].first.first + nets[i].first.second * cols;
+        int end_pos = nets[i].second.first + nets[i].second.second * cols;
         dijkstra(start_pos);
         choose_path(i, start_pos, end_pos);
     }
@@ -175,7 +175,7 @@ void Graph::solve()
     // }
 }
 
-void Graph::save_path(string output_file)
+void Solution::save_path(string output_file)
 {
     ofstream fout(output_file);
     for (int i = 0; i < num_nets; i++)
@@ -183,10 +183,10 @@ void Graph::save_path(string output_file)
         fout << i << " " << paths[i].size() - 1 << endl;
         for (int j = paths[i].size() - 1; j > 0; j--)
         {
-            int x1 = paths[i][j] / col;
-            int y1 = paths[i][j] % col;
-            int x2 = paths[i][j - 1] / col;
-            int y2 = paths[i][j - 1] % col;
+            int x1 = paths[i][j]  % cols;
+            int y1 = paths[i][j] / cols;
+            int x2 = paths[i][j - 1] % cols;
+            int y2 = paths[i][j - 1] / cols;
             fout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
         }
     }
