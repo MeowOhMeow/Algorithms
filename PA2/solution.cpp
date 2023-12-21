@@ -14,8 +14,7 @@ Solution::Solution(int cols, int rows, int capacity)
     d.resize(vertices);
     paths.resize(num_nets);
 
-    int dominant = max(cols, rows);
-    alpha = pow(dominant, 1.0 / capacity);
+    alpha = pow(100, 1.0 / capacity);
 
     // build graph
     // horizontal
