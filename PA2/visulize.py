@@ -61,22 +61,23 @@ def read_file(file_path):
 
     return nets, total_length
 
-# file_name = "out/4x4.out"
-# file_name = "out/5x5.out"
-file_name = "out/10x10.out"
-# file_name = "out/20x20.out"
-# file_name = "out/60x60.out"
+
+table = [
+    {"file_name": "out/4x4.out", "max": 2, "draw": True},
+    {"file_name": "out/5x5.out", "max": 3, "draw": True},
+    {"file_name": "out/10x10.out", "max": 45, "draw": True},
+    {"file_name": "out/20x20.out", "max": 45, "draw": False},
+    {"file_name": "out/60x60.out", "max": 45, "draw": False},
+]
+config = table[4]
 
 # Coordinates for each net
-nets, total_length = read_file(file_name)
+nets, total_length = read_file(config["file_name"])
 print("Total length: ", total_length)
-# detect_overlaps(file_name, 2)
-detect_overlaps(file_name, 3)
-# detect_overlaps(file_name, 45)
+detect_overlaps(config["file_name"], config["max"])
 
-draw = True
-# draw = False
-if draw:
+
+if config["draw"]:
     length = len(nets)
     # Plotting each net with a small x-offset
     for i, net in enumerate(nets):
