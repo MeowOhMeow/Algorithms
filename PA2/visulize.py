@@ -69,7 +69,7 @@ table = [
     {"file_name": "out/20x20.out", "max": 45, "draw": False},
     {"file_name": "out/60x60.out", "max": 45, "draw": False},
 ]
-config = table[4]
+config = table[2]
 
 # Coordinates for each net
 nets, total_length = read_file(config["file_name"])
