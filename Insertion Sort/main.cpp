@@ -2,14 +2,14 @@
 #include <vector>
 #include <random>
 
-#include "InsertionSort.h"
+#include "Sort.h"
 
 using namespace std;
 
 int main()
 {
     int array[] = { 5, 2, 4, 6, 1, 3 };
-    sort(array);
+    Sorting::sort(array);
     for (int val : array)
     {
         cout << val << " ";
@@ -17,7 +17,7 @@ int main()
     cout << endl;
 
     vector<int> vec = { 5, 2, 4, 6, 1, 3 };
-    sort(vec);
+    Sorting::sort(vec);
     for (int val : vec)
     {
         cout << val << " ";
@@ -33,7 +33,7 @@ int main()
     {
         dynamicArray[i] = dis(gen);
     }
-    sort(dynamicArray, size);
+    Sorting::sort(dynamicArray, size);
     for (int i = 0; i < size; ++i)
     {
         cout << dynamicArray[i] << " ";

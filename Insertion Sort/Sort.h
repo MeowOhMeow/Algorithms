@@ -1,12 +1,27 @@
-#ifndef INSERTIONSORT_H
-#define INSERTIONSORT_H
+#ifndef SORT_H
+#define SORT_H
 
 #include <vector>
 #include <cstddef>
 
+namespace Sorting
+{
+    // for dynamic arrays
+    template <typename T>
+    void sort(T *array, size_t size);
+
+    // for static arrays
+    template <typename T, size_t N>
+    void sort(T (&array)[N]);
+
+    // for vectors
+    template <typename T>
+    void sort(std::vector<T> &vec);
+}
+
 // for dynamic arrays
 template <typename T>
-void sort(T* array, size_t size)
+void Sorting::sort(T* array, size_t size)
 {
     for (size_t i = 1; i < size; ++i)
     {
@@ -23,7 +38,7 @@ void sort(T* array, size_t size)
 
 // for static arrays
 template <typename T, size_t N>
-void sort(T (&array)[N])
+void Sorting::sort(T (&array)[N])
 {
     for (size_t i = 1; i < N; ++i)
     {
@@ -40,7 +55,7 @@ void sort(T (&array)[N])
 
 // for vectors
 template <typename T>
-void sort(std::vector<T>& vec)
+void Sorting::sort(std::vector<T>& vec)
 {
     for (size_t i = 1; i < vec.size(); ++i)
     {
@@ -55,4 +70,5 @@ void sort(std::vector<T>& vec)
     }
 }
 
-#endif // INSERTIONSORT_H
+
+#endif // SORT_H
